@@ -110,7 +110,7 @@ Identity data starts in shared files, but some text and links are hard-coded.
 | Homepage biography and employer links                          | `src/components/Template/Hero.tsx`                                     |
 | Logo initials                                                  | `src/components/Template/Navigation.tsx`                               |
 | Footer source link                                             | `src/components/Template/Footer.tsx`                                   |
-| Portrait and its alt text                                      | `public/images/me2-1.png`, `src/components/Template/ThemePortrait.tsx` |
+| Portrait and its alt text                                      | `public/images/me.jpg`, `src/components/Template/ThemePortrait.tsx` |
 | Favicon files and web app name                                 | `public/images/favicon/`                                               |
 | Sitemap URL for crawlers                                       | `public/robots.txt`                                                    |
 | RSS title and description                                      | `app/feed.xml/route.ts`                                                |
