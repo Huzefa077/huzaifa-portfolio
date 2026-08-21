@@ -14,8 +14,8 @@ export const TWITTER_HANDLE = '@01Huzaifa28160';
  */
 export const SITE_IMAGE_PATH = '/images/me.jpg';
 export const SITE_IMAGE_DIMENSIONS = {
-  width: 907,
-  height: 907,
+  width: 928,
+  height: 928,
 } as const;
 
 /**
