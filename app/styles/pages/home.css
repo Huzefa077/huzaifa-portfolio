@@ -283,6 +283,36 @@
   background-image: none;
 }
 
+.home-writing-empty {
+  padding: 2rem;
+  border: var(--rule) solid var(--color-border);
+  background-color: var(--color-surface-subtle);
+}
+
+.home-writing-empty-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.home-writing-empty h3 {
+  margin: 0.65rem 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  color: var(--color-fg-bold);
+}
+
+.home-writing-empty p {
+  max-width: 42rem;
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  color: var(--color-fg-light);
+}
+
 .home-writing-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -338,6 +368,14 @@
 @media (max-width: 760px) {
   .home-writing {
     margin-top: 3.5rem;
+  }
+
+  .home-writing-header {
+    align-items: start;
+  }
+
+  .home-writing-empty {
+    padding: 1.25rem;
   }
 
   .home-writing-list {

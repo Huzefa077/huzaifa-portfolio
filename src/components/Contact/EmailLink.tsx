@@ -11,24 +11,19 @@ const HOLD_TICKS_AFTER_MESSAGE = 50; // Ticks to wait after message completes
 
 /** The address the link always resolves to, whatever the animation shows. */
 const CONTACT_ADDRESS = profile.email;
-const [CONTACT_LOCAL_PART, CONTACT_DOMAIN] = CONTACT_ADDRESS.split('@');
 
 const messages = [
-  CONTACT_LOCAL_PART,
-  'hello',
-  'hola',
-  'you-can-email-me-at-literally-anything! Really',
-  'well, not anything. But most things',
-  'like-this',
-  'or-this',
-  'but not this :(  ',
-  'you.can.also.email.me.with.specific.topics.like',
-  'just-saying-hi',
-  'please-work-for-us',
-  'help',
-  'admin',
-  'or-I-really-like-your-website',
-  'thanks',
+  'Assalamu Alaikum.',
+  'Hello.',
+  'Hola.',
+  'Looking for five years of experience?',
+  'Okay..',
+  'That conversation may be shorter...',
+  'I build full-stack applications.',
+  'Which means I can break both the frontend and backend.',
+  'Recruiters are welcome too.',
+  "Seriously, you're still here?!",
+  'At this point, you might as well say hello.',
 ];
 
 function useInterval(callback: () => void, delay: number | null) {
@@ -134,7 +129,7 @@ export default function EmailLink({ loopMessage = false }: EmailLinkProps) {
   // sees is the actual address — and it holds there before the cycle starts.
   const [state, dispatch] = useReducer(animationReducer, {
     idx: 0,
-    message: CONTACT_LOCAL_PART,
+    message: messages[0],
     char: messages[0].length,
     isActive: true,
   });
@@ -155,7 +150,7 @@ export default function EmailLink({ loopMessage = false }: EmailLinkProps) {
 
   // The reducer never yields an empty prefix, so the only reason to override
   // it is reduced motion, where the real address should simply stand.
-  const displayMessage = reducedMotion ? CONTACT_LOCAL_PART : state.message;
+  const displayMessage = reducedMotion ? messages[0] : state.message;
 
   const handlePause = () => dispatch({ type: 'PAUSE' });
   const handleResume = () => {
@@ -184,11 +179,11 @@ export default function EmailLink({ loopMessage = false }: EmailLinkProps) {
         onBlur={handleResume}
       >
         <span className="sr-only">Email {CONTACT_ADDRESS}</span>
-        <span className="contact-email-prefix" aria-hidden="true">
+        <span className="contact-email-message" aria-hidden="true">
           {displayMessage}
         </span>
-        <span className="contact-email-domain" aria-hidden="true">
-          @{CONTACT_DOMAIN}
+        <span className="contact-email-address" aria-hidden="true">
+          {CONTACT_ADDRESS}
         </span>
       </a>
     </div>

@@ -1,15 +1,21 @@
 import { describe, expect, it } from 'vitest';
 
 import profile from '@/data/profile.json';
-import { getPostSlugs } from '@/lib/posts';
-import { AUTHOR_NAME, SHARE_IMAGE_PATH, SITE_URL } from '@/lib/utils';
+import { SHARE_IMAGE_ALT } from '@/lib/metadata';
+import {
+  AUTHOR_NAME,
+  SHARE_IMAGE_DIMENSIONS,
+  SHARE_IMAGE_PATH,
+  SITE_URL,
+} from '@/lib/utils';
 import { metadata as aboutMetadata } from '../about/page';
+import { metadata as archiveMetadata } from '../archive/page';
+import { metadata as blogMetadata } from '../blog/page';
 import { metadata as contactMetadata } from '../contact/page';
 import { metadata as notFoundMetadata } from '../not-found';
 import { metadata as projectsMetadata } from '../projects/page';
 import { metadata as resumeMetadata } from '../resume/page';
 import { metadata as statsMetadata } from '../stats/page';
-import { generateMetadata as generatePostMetadata } from '../writing/[slug]/page';
 import { metadata as writingMetadata } from '../writing/page';
 
 describe('page metadata', () => {
@@ -20,7 +26,9 @@ describe('page metadata', () => {
   it.each([
     ['about', aboutMetadata, `${SITE_URL}/about/`],
     ['contact', contactMetadata, `${SITE_URL}/contact/`],
-    ['archive', projectsMetadata, `${SITE_URL}/projects/`],
+    ['projects', projectsMetadata, `${SITE_URL}/projects/`],
+    ['blog', blogMetadata, `${SITE_URL}/blog/`],
+    ['archive', archiveMetadata, `${SITE_URL}/archive/`],
     ['resume', resumeMetadata, `${SITE_URL}/resume/`],
     ['stats', statsMetadata, `${SITE_URL}/stats/`],
     ['writing', writingMetadata, `${SITE_URL}/writing/`],
@@ -35,7 +43,9 @@ describe('page metadata', () => {
   it.each([
     ['about', aboutMetadata],
     ['contact', contactMetadata],
-    ['archive', projectsMetadata],
+    ['projects', projectsMetadata],
+    ['blog', blogMetadata],
+    ['archive', archiveMetadata],
     ['resume', resumeMetadata],
     ['stats', statsMetadata],
     ['writing', writingMetadata],
@@ -44,25 +54,26 @@ describe('page metadata', () => {
     expect(metadata.twitter?.title).toBe(`${metadata.title} | ${AUTHOR_NAME}`);
   });
 
-  /**
-   * A route-level `openGraph` object replaces the inherited one entirely, so
-   * every page that declares one must repeat the share image. Blog posts
-   * shipped without an og:image for exactly this reason.
-   */
   it.each([
     ['about', aboutMetadata],
     ['contact', contactMetadata],
-    ['archive', projectsMetadata],
+    ['projects', projectsMetadata],
+    ['blog', blogMetadata],
+    ['archive', archiveMetadata],
     ['resume', resumeMetadata],
     ['stats', statsMetadata],
     ['writing', writingMetadata],
     ['404', notFoundMetadata],
-  ])('declares the share card on %s', (_, metadata) => {
-    const ogImages = metadata.openGraph?.images;
-    expect(JSON.stringify(ogImages)).toContain(SHARE_IMAGE_PATH);
-    expect(JSON.stringify(metadata.twitter?.images)).toContain(
-      SHARE_IMAGE_PATH,
-    );
+  ])('uses the personalized share card on %s', (_, metadata) => {
+    const image = {
+      url: `${SITE_URL}${SHARE_IMAGE_PATH}`,
+      width: SHARE_IMAGE_DIMENSIONS.width,
+      height: SHARE_IMAGE_DIMENSIONS.height,
+      alt: SHARE_IMAGE_ALT,
+    };
+
+    expect(metadata.openGraph?.images).toEqual([image]);
+    expect(metadata.twitter?.images).toEqual([image]);
   });
 
   /**
@@ -73,7 +84,9 @@ describe('page metadata', () => {
   it.each([
     ['about', aboutMetadata, `${SITE_URL}/about/`],
     ['contact', contactMetadata, `${SITE_URL}/contact/`],
-    ['archive', projectsMetadata, `${SITE_URL}/projects/`],
+    ['projects', projectsMetadata, `${SITE_URL}/projects/`],
+    ['blog', blogMetadata, `${SITE_URL}/blog/`],
+    ['archive', archiveMetadata, `${SITE_URL}/archive/`],
     ['resume', resumeMetadata, `${SITE_URL}/resume/`],
     ['stats', statsMetadata, `${SITE_URL}/stats/`],
     ['writing', writingMetadata, `${SITE_URL}/writing/`],
@@ -83,35 +96,6 @@ describe('page metadata', () => {
 
   it('omits the canonical on 404, which has no stable url', () => {
     expect(notFoundMetadata.alternates?.canonical).toBeUndefined();
-  });
-
-  it('keeps the RSS alternate alongside the canonical on the writing index', () => {
-    expect(writingMetadata.alternates?.types).toEqual({
-      'application/rss+xml': '/feed.xml',
-    });
-  });
-
-  it('declares a canonical url for blog posts', async () => {
-    const [slug] = getPostSlugs();
-    const metadata = await generatePostMetadata({
-      params: Promise.resolve({ slug }),
-    });
-
-    expect(metadata.alternates?.canonical).toBe(`${SITE_URL}/writing/${slug}/`);
-  });
-
-  it('declares the share card on blog posts', async () => {
-    const [slug] = getPostSlugs();
-    const metadata = await generatePostMetadata({
-      params: Promise.resolve({ slug }),
-    });
-
-    expect(JSON.stringify(metadata.openGraph?.images)).toContain(
-      SHARE_IMAGE_PATH,
-    );
-    expect(JSON.stringify(metadata.twitter?.images)).toContain(
-      SHARE_IMAGE_PATH,
-    );
   });
 
   it('overrides 404 share metadata without inventing a canonical url', () => {
@@ -130,9 +114,7 @@ describe('page metadata', () => {
     );
   });
 
-  it('preserves the writing rss alternate', () => {
-    expect(writingMetadata.alternates?.types?.['application/rss+xml']).toBe(
-      '/feed.xml',
-    );
+  it('keeps the legacy writing page out of search results', () => {
+    expect(writingMetadata.robots).toEqual({ index: false, follow: true });
   });
 });

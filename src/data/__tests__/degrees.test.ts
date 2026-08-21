@@ -12,12 +12,10 @@ describe('degrees data', () => {
     for (const degree of degrees) {
       expect(degree).toHaveProperty('school');
       expect(degree).toHaveProperty('degree');
-      expect(degree).toHaveProperty('link');
       expect(degree).toHaveProperty('year');
 
       expect(typeof degree.school).toBe('string');
       expect(typeof degree.degree).toBe('string');
-      expect(typeof degree.link).toBe('string');
       expect(typeof degree.year).toBe('number');
     }
   });
@@ -31,11 +29,11 @@ describe('degrees data', () => {
     }
   });
 
-  it('links are valid URLs', () => {
-    const urlRegex = /^https?:\/\/.+/;
-
+  it('links are valid URLs when provided', () => {
     for (const degree of degrees) {
-      expect(degree.link).toMatch(urlRegex);
+      if (degree.link) {
+        expect(degree.link).toMatch(/^https?:\/\/.+/);
+      }
     }
   });
 

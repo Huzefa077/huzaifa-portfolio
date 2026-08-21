@@ -10,6 +10,28 @@
     position: relative;
     line-height: 0;
   }
+
+  .theme-portrait--placeholder {
+    max-width: 100%;
+    aspect-ratio: 1;
+    background:
+      linear-gradient(var(--color-border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-border) 1px, transparent 1px), var(--color-surface-subtle);
+    background-size: 2rem 2rem;
+  }
+
+  .theme-portrait-initials {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    color: var(--color-fg-bold);
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 18vw, 7rem);
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-display);
+    line-height: 1;
+  }
 }
 
 /* ========================================
@@ -25,23 +47,6 @@
   margin-bottom: 3rem;
 }
 
-.projects-section-title {
-  font-family: var(--font-mono);
-  font-size: var(--text-2xs);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-fg-light);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-label);
-  margin-bottom: 1.25rem;
-  padding-top: 0.875rem;
-  border-top: var(--rule) solid var(--color-fg-bold);
-}
-
-.projects-featured {
-  margin-bottom: 4rem;
-  position: relative;
-}
-
 .projects-grid {
   display: grid;
   gap: 1.75rem;
@@ -54,56 +59,23 @@
   }
 }
 
-.projects-grid--featured .project-card {
-  grid-column: 1 / -1;
-}
-
-@media screen and (min-width: 600px) {
-  .projects-grid--featured {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .projects-grid--featured .project-card {
-    grid-column: auto;
-  }
-}
-
 .project-card {
+  display: flex;
+  flex-direction: column;
   background: transparent;
   border-radius: 0;
   overflow: hidden;
   border: var(--rule) solid var(--color-border);
   box-shadow: none;
-  transition: border-color var(--duration-fast) var(--ease-out);
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
 }
 
-.project-card--linked:hover {
+.project-card:hover,
+.project-card:focus-within {
   border-color: var(--color-fg-bold);
-}
-
-/* Full card link wrapper */
-.project-card-link {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-}
-
-.project-card-link:focus-visible {
-  outline: none;
-}
-
-.project-card:has(.project-card-link:focus-visible) {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
-/* Static (non-linked) project cards */
-.project-card--static {
-  cursor: default;
-}
-
-.project-card-static {
-  display: block;
+  transform: translateY(-2px);
 }
 
 .project-card-image {
@@ -114,7 +86,7 @@
   background: var(--color-surface-subtle);
 }
 
-/* Archive imagery is held back in greyscale and only develops on
+/* Project imagery is held back in greyscale and only develops on
    hover, so a page of screenshots does not shout over the resume. */
 .project-card-image img {
   width: 100%;
@@ -124,8 +96,8 @@
   transition: filter var(--duration-normal) var(--ease-out);
 }
 
-.project-card--linked:hover .project-card-image img,
-.project-card--linked:focus-within .project-card-image img {
+.project-card:hover .project-card-image img,
+.project-card:focus-within .project-card-image img {
   filter: grayscale(0) contrast(1);
 }
 
@@ -138,35 +110,15 @@
 }
 
 .project-card-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   padding: 1.5rem;
 }
 
 .project-card-header {
   position: relative;
   margin-bottom: 0.875rem;
-}
-
-.project-card--linked .project-card-header {
-  padding-right: 2rem;
-}
-
-.project-card-affordance {
-  position: absolute;
-  top: 0.15rem;
-  right: 0;
-  font-family: var(--font-mono);
-  font-size: var(--text-ui);
-  color: var(--color-accent);
-  opacity: 0.65;
-  transition:
-    opacity var(--duration-fast) var(--ease-out),
-    transform var(--duration-fast) var(--ease-out);
-}
-
-.project-card--linked:hover .project-card-affordance,
-.project-card--linked:focus-within .project-card-affordance {
-  opacity: 1;
-  transform: translate(1px, -1px);
 }
 
 .project-card-title {
@@ -198,6 +150,47 @@
   flex-wrap: wrap;
   gap: 0.625rem;
   margin-bottom: 1.25rem;
+}
+
+.project-card-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.project-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+}
+
+.project-card-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.55rem 0.75rem;
+  border: var(--rule) solid var(--color-border-alt);
+  background-image: none;
+  color: var(--color-fg-bold);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+.project-card-action:hover,
+.project-card-action:focus-visible {
+  border-color: var(--color-accent);
+  background: var(--color-surface-subtle);
+  color: var(--color-accent);
 }
 
 .project-card-date {
@@ -525,7 +518,8 @@
 }
 
 .courses .course-number {
-  display: block;
+  display: flex;
+  justify-content: space-between;
   margin: 0;
   font-family: var(--font-mono);
   font-size: var(--text-xs);

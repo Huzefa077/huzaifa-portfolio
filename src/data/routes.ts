@@ -5,6 +5,7 @@ export interface Route {
   path: string;
   index?: boolean;
   primary?: boolean;
+  footerOnly?: boolean;
 }
 
 const routes: Route[] = [
@@ -18,12 +19,22 @@ const routes: Route[] = [
     path: '/about',
   },
   {
+    label: 'Projects',
+    path: '/projects',
+  },
+  {
     label: 'Resume',
     path: '/resume',
   },
   {
-    label: 'Writing',
-    path: '/writing',
+    label: 'Blog',
+    path: '/blog',
+  },
+  {
+    label: 'Archive',
+    path: '/archive',
+    primary: false,
+    footerOnly: true,
   },
   {
     label: 'Stats',
@@ -33,11 +44,6 @@ const routes: Route[] = [
   {
     label: 'Contact',
     path: '/contact',
-  },
-  {
-    label: 'Archive',
-    path: '/projects',
-    primary: false,
   },
 ];
 

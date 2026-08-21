@@ -1,5 +1,4 @@
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { faAngellist } from '@fortawesome/free-brands-svg-icons/faAngellist';
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons/faFacebookF';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
@@ -17,32 +16,27 @@ export interface ContactItem {
 
 const data: ContactItem[] = [
   {
-    link: 'https://www.linkedin.com/in/michaelldangelo',
+    link: 'https://www.linkedin.com/in/huzaifasheikh077/',
     label: 'LinkedIn',
     icon: faLinkedinIn,
   },
   {
-    link: 'https://github.com/mldangelo',
+    link: 'https://github.com/Huzefa077',
     label: 'GitHub',
     icon: faGithub,
   },
   {
-    link: 'https://x.com/dangelosaurus',
+    link: 'https://x.com/01Huzaifa28160',
     label: 'X',
     icon: faTwitter,
   },
   {
-    link: 'https://angel.co/michael-d-angelo',
-    label: 'Angel List',
-    icon: faAngellist,
-  },
-  {
-    link: 'https://www.instagram.com/dangelosaurus/',
+    link: 'https://www.instagram.com/huzefa_o77',
     label: 'Instagram',
     icon: faInstagram,
   },
   {
-    link: 'https://facebook.com/d',
+    link: 'https://www.facebook.com/Huzaifasajidsheikh',
     label: 'Facebook',
     icon: faFacebookF,
   },

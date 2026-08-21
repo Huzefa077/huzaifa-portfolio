@@ -32,12 +32,9 @@ describe('createHeadingId', () => {
         createHeadingId(title),
       ]),
     ).toEqual([
-      ['Some History', 'some-history'],
-      ['I Like', 'i-like'],
-      ['Travel / Geography', 'travel-geography'],
-      ['Fun Facts', 'fun-facts'],
-      ['I Dream Of', 'i-dream-of'],
-      ['Websites from People I Admire', 'websites-from-people-i-admire'],
+      ['My Journey', 'my-journey'],
+      ['Beyond Programming', 'beyond-programming'],
+      ['What I Value', 'what-i-value'],
     ]);
   });
 });

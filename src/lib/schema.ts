@@ -7,8 +7,6 @@ import {
   SHARE_IMAGE_DIMENSIONS,
   SHARE_IMAGE_PATH,
   SITE_DESCRIPTION,
-  SITE_IMAGE_DIMENSIONS,
-  SITE_IMAGE_PATH,
   SITE_URL,
 } from '@/lib/utils';
 
@@ -26,15 +24,14 @@ export { SITE_URL } from '@/lib/utils';
 // Stable node identifiers, referenced across pages.
 export const PERSON_ID = `${SITE_URL}/#person`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
-export const BLOG_ID = `${SITE_URL}/writing/#blog`;
+export const BLOG_ID = `${SITE_URL}/blog/#blog`;
 
 export const SITE_LANGUAGE = 'en-US';
-export const SITE_IMAGE = `${SITE_URL}${SITE_IMAGE_PATH}`;
 export const HOME_URL = `${SITE_URL}/`;
 
 // Shared so the /writing metadata and the Blog node stay in sync.
 export const WRITING_DESCRIPTION =
-  'Articles on AI security, LLM red teaming, and trust & safety.';
+  'Practical notes from Huzaifa Sheikh on web development, projects, and technology.';
 
 type SchemaNode = Record<string, unknown>;
 
@@ -77,27 +74,14 @@ export function personNode(): SchemaNode {
     givenName,
     familyName,
     url: HOME_URL,
-    image: {
-      '@type': 'ImageObject',
-      '@id': `${SITE_URL}/#person-image`,
-      url: SITE_IMAGE,
-      width: SITE_IMAGE_DIMENSIONS.width,
-      height: SITE_IMAGE_DIMENSIONS.height,
-      caption: AUTHOR_NAME,
-    },
     description: SITE_DESCRIPTION,
     jobTitle: currentJob.position,
     ...(email && { email }),
     sameAs: socialLinks,
-    worksFor: {
-      '@type': 'Organization',
-      name: currentJob.name,
-      url: currentJob.url,
-    },
     alumniOf: degrees.map((degree) => ({
       '@type': 'CollegeOrUniversity',
       name: degree.school,
-      url: degree.link,
+      ...(degree.link && { url: degree.link }),
     })),
   };
 }
@@ -112,18 +96,10 @@ export function websiteNode(): SchemaNode {
     '@id': WEBSITE_ID,
     url: HOME_URL,
     name: AUTHOR_NAME,
-    alternateName: ['mldangelo.com', 'mldangelo'],
+    alternateName: ['huzaifasheikh.dev', 'Huzaifa Sheikh'],
     description: SITE_DESCRIPTION,
     inLanguage: SITE_LANGUAGE,
     publisher: personRef(),
-    image: {
-      '@type': 'ImageObject',
-      '@id': `${SITE_URL}/#website-image`,
-      url: SITE_IMAGE,
-      width: SITE_IMAGE_DIMENSIONS.width,
-      height: SITE_IMAGE_DIMENSIONS.height,
-      caption: AUTHOR_NAME,
-    },
   };
 }
 

@@ -31,7 +31,7 @@ export async function GET() {
   const internalPosts = getAllPosts();
   const internalItems: FeedItem[] = internalPosts.map((post) => ({
     title: post.title,
-    url: `${SITE_URL}/writing/${post.slug}/`,
+    url: `${SITE_URL}/blog/${post.slug}/`,
     date: post.date,
     description: post.description,
   }));
@@ -70,9 +70,9 @@ export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>${escapeXml(AUTHOR_NAME)} - Writing</title>
-    <link>${SITE_URL}/writing/</link>
-    <description>Articles on AI security, LLM red teaming, and trust &amp; safety by ${escapeXml(AUTHOR_NAME)}.</description>
+    <title>${escapeXml(AUTHOR_NAME)} - Blog</title>
+    <link>${SITE_URL}/blog/</link>
+    <description>Practical notes on web development, projects, and technology by ${escapeXml(AUTHOR_NAME)}.</description>
     <language>en-us</language>
     <lastBuildDate>${lastBuildDate}</lastBuildDate>
     <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml"/>${rssItems}

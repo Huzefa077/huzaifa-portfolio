@@ -89,6 +89,10 @@
   margin: 0;
 }
 
+.resume-actions {
+  margin-top: 1.5rem;
+}
+
 /* Section index — a row of mono labels on a rule, not a pill bar. */
 .resume-nav {
   display: flex;
@@ -103,7 +107,8 @@
   position: sticky;
   top: var(--header-height);
   z-index: var(--z-sticky);
-  background: var(--color-bg-alt);
+  background-color: color-mix(in srgb, var(--color-bg-alt) 88%, transparent);
+  backdrop-filter: blur(2px);
   padding: 0.75rem 0;
   border-top: var(--rule) solid var(--color-border);
   border-bottom: var(--rule) solid var(--color-border);

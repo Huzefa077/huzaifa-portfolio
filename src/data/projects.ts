@@ -1,50 +1,53 @@
 export interface Project {
   title: string;
   subtitle?: string;
-  link?: string;
-  image: string;
-  date: string;
+  liveUrl?: string;
+  githubUrl?: string;
+  image?: string;
+  imageAlt?: string;
+  date?: string;
   desc: string;
   tech?: string[];
-  featured?: boolean;
 }
 
 const data: Project[] = [
   {
-    title: 'Nearest Dollar',
-    subtitle: 'BVP Hackathon',
-    image: '/images/projects/nearestdollar.jpg',
-    date: '2015-11-20',
-    desc: 'Connected to bank accounts to round up purchases and donate spare change to charity.',
-    tech: ['React', 'Node.js', 'Plaid API', 'MongoDB'],
-    featured: true,
+    title: 'Tarbiyah Planner',
+    subtitle: 'Personalized activity planning for families',
+    liveUrl: 'https://tarbiyah-planner.vercel.app/',
+    githubUrl: 'https://github.com/Huzefa077/tarbiyah-planner',
+    desc: 'A full-stack application that helps parents create personalized, printable activity planners for children, with routine management and daily, weekly, and monthly PDF exports.',
+    tech: [
+      'Next.js',
+      'TypeScript',
+      'Tailwind CSS',
+      'TypeORM',
+      'PostgreSQL',
+      'JWT',
+    ],
   },
   {
-    title: 'Harvest',
-    subtitle: '3rd place at Techcrunch Disrupt SF',
-    link: 'https://devpost.com/software/harvest',
-    image: '/images/projects/harvest.jpg',
-    date: '2015-09-20',
-    desc: 'Low-cost crop monitoring to catch irrigation leaks and nutrient deficiencies.',
-    tech: ['Python', 'Arduino', 'Computer Vision', 'AWS'],
-    featured: true,
+    title: 'Face Detection & Analysis',
+    subtitle: 'AI-powered facial attribute analysis',
+    liveUrl: 'https://ocula-frontend.vercel.app/',
+    githubUrl: 'https://github.com/Huzefa077/ocula-frontend',
+    desc: 'A deployed full-stack application that detects faces from image URLs and predicts age, gender, and facial expression, with clear loading and error states.',
+    tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'face-api.js'],
   },
   {
-    title: 'Space Potato',
-    subtitle: 'Kickstarter-funded weather balloon',
-    link: 'http://www.spacepotato.org',
-    image: '/images/projects/spacepotato.jpg',
-    date: '2015-06-28',
-    desc: 'Potato-powered weather balloon with cameras. Photos published in a coffee table book.',
-    tech: ['Hardware', 'GPS', 'Photography'],
-  },
-  {
-    title: 'Cat Detector',
-    subtitle: 'CNN for cat breed classification',
-    image: '/images/projects/catdetector.jpg',
-    date: '2015-05-15',
-    desc: 'Classified 60,000+ cats across 80 breeds before server costs shut it down.',
-    tech: ['Python', 'TensorFlow', 'CNN', 'AWS'],
+    title: 'NutriWise',
+    subtitle: 'Personalized diet and meal planning',
+    liveUrl: 'https://diet-planner-ten-wheat.vercel.app/',
+    githubUrl: 'https://github.com/Huzefa077/diet_planner',
+    desc: 'A secure diet-planning platform that calculates calorie and macronutrient targets and recommends nutritionally similar meals using cosine similarity.',
+    tech: [
+      'React',
+      'Node.js',
+      'Express',
+      'MongoDB Atlas',
+      'JWT',
+      'Tailwind CSS',
+    ],
   },
 ];
 

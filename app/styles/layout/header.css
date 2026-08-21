@@ -42,8 +42,7 @@
 .site-header {
   align-items: center;
   background-color: color-mix(in srgb, var(--color-bg-alt) 88%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(2px);
   border-bottom: var(--rule) solid var(--color-border);
   display: flex;
   height: var(--header-height);

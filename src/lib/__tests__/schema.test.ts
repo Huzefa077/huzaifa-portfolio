@@ -1,7 +1,6 @@
-import fs from 'node:fs';
-import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
+import { readImageSize } from '@/lib/imageSize';
 import type { Post } from '@/lib/posts';
 import {
   BLOG_ID,
@@ -27,54 +26,6 @@ import {
   SITE_URL,
 } from '@/lib/utils';
 
-const START_OF_FRAME_MARKERS = new Set([
-  0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf,
-]);
-
-function readJpegDimensions(filePath: string) {
-  const buffer = fs.readFileSync(filePath);
-
-  if (buffer[0] !== 0xff || buffer[1] !== 0xd8) {
-    throw new Error(`Expected a JPEG file at ${filePath}`);
-  }
-
-  let offset = 2;
-
-  while (offset < buffer.length) {
-    if (buffer[offset] !== 0xff) {
-      throw new Error(`Invalid JPEG marker at byte ${offset}`);
-    }
-
-    while (buffer[offset] === 0xff) {
-      offset += 1;
-    }
-
-    const marker = buffer[offset];
-    offset += 1;
-
-    if (marker === 0xd9 || marker === 0xda) {
-      break;
-    }
-
-    if (marker === 0x01 || (marker >= 0xd0 && marker <= 0xd7)) {
-      continue;
-    }
-
-    const length = buffer.readUInt16BE(offset);
-
-    if (START_OF_FRAME_MARKERS.has(marker)) {
-      return {
-        height: buffer.readUInt16BE(offset + 3),
-        width: buffer.readUInt16BE(offset + 5),
-      };
-    }
-
-    offset += length;
-  }
-
-  throw new Error(`Could not find JPEG dimensions for ${filePath}`);
-}
-
 const mockPost: Post = {
   slug: 'test-article',
   title: 'Test Article Title',
@@ -93,26 +44,20 @@ describe('personNode', () => {
   it('uses author name and split given/family names', () => {
     const node = personNode();
     expect(node.name).toBe(AUTHOR_NAME);
-    expect(node.givenName).toBe('Michael');
-    expect(node.familyName).toBe("D'Angelo");
+    expect(node.givenName).toBe('Huzaifa');
+    expect(node.familyName).toBe('Sheikh');
   });
 
-  it('exposes an ImageObject and social sameAs links', () => {
+  it('exposes social links without the stale template portrait', () => {
     const node = personNode();
-    const image = node.image as Record<string, unknown>;
-    expect(image['@type']).toBe('ImageObject');
-    expect(image.url).toBe(`${SITE_URL}/images/me.jpg`);
-    expect(image.width).toBe(SITE_IMAGE_DIMENSIONS.width);
-    expect(image.height).toBe(SITE_IMAGE_DIMENSIONS.height);
+    expect(node.image).toBeUndefined();
     expect(Array.isArray(node.sameAs)).toBe(true);
     expect((node.sameAs as string[]).length).toBeGreaterThan(0);
   });
 
-  it('includes worksFor and alumniOf', () => {
+  it('does not misrepresent a private client as an employer organization', () => {
     const node = personNode();
-    const worksFor = node.worksFor as Record<string, unknown>;
-    expect(worksFor['@type']).toBe('Organization');
-    expect(worksFor.name).toBe('OpenAI');
+    expect(node.worksFor).toBeUndefined();
     const alumniOf = node.alumniOf as Record<string, unknown>[];
     expect(alumniOf[0]['@type']).toBe('CollegeOrUniversity');
   });
@@ -262,12 +207,6 @@ describe('buildGraph', () => {
 
 describe('site image metadata', () => {
   it('keeps declared image dimensions in sync with the public asset', () => {
-    const imagePath = path.join(
-      process.cwd(),
-      'public',
-      SITE_IMAGE_PATH.replace(/^\//, ''),
-    );
-
-    expect(SITE_IMAGE_DIMENSIONS).toEqual(readJpegDimensions(imagePath));
+    expect(SITE_IMAGE_DIMENSIONS).toEqual(readImageSize(SITE_IMAGE_PATH));
   });
 });

@@ -17,7 +17,7 @@ import { AUTHOR_NAME, SITE_URL } from '@/lib/utils';
 
 export const metadata: Metadata = createPageMetadata({
   title: 'Resume',
-  description: `${AUTHOR_NAME}'s Resume. OpenAI, Promptfoo, Smile ID, Arthena, Matroid, Stanford ICME, YC alum.`,
+  description: `${AUTHOR_NAME}'s full-stack developer resume, skills, education, projects, and experience.`,
   path: '/resume/',
 });
 
@@ -28,13 +28,21 @@ export default function ResumePage() {
         <header className="resume-header">
           <h1 className="resume-title">Resume</h1>
           <p className="resume-summary">
-            Engineering leader with 15+ years building products across AI,
-            security, and infrastructure. I&apos;m currently a Member of the
-            Technical Staff at OpenAI, working on Promptfoo and Codex Security.
-            I help secure AI systems and use AI to find software
-            vulnerabilities. I co-founded Promptfoo before it joined OpenAI in
-            2026. Stanford MS, YC alum, previously VP Engineering.
+            Computer Engineering graduate with hands-on experience building and
+            deploying full-stack applications using React, Next.js, Node.js,
+            Express, MongoDB, and PostgreSQL. I enjoy writing clean,
+            maintainable code and building practical products that solve real
+            problems.
           </p>
+          <div className="resume-actions">
+            <a
+              href="/Huzaifa_FullStackDeveloper.pdf"
+              download
+              className="button button-secondary"
+            >
+              Download résumé
+            </a>
+          </div>
           {/* Print-only, but real markup rather than CSS `content`, so it is
               selectable, linkable, and reads from the shared profile. The
               screen layout carries these in the footer, which print hides. */}
@@ -43,7 +51,7 @@ export default function ResumePage() {
             <span aria-hidden="true"> · </span>
             <a href={`mailto:${profile.email}`}>{profile.email}</a>
             <span aria-hidden="true"> · </span>
-            <a href="https://github.com/mldangelo">github.com/mldangelo</a>
+            <a href="https://github.com/Huzefa077">github.com/Huzefa077</a>
           </address>
         </header>
 

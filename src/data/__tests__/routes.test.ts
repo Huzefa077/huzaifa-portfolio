@@ -40,6 +40,8 @@ describe('routes', () => {
     expect(paths).toContain('/about');
     expect(paths).toContain('/resume');
     expect(paths).toContain('/projects');
+    expect(paths).toContain('/blog');
+    expect(paths).toContain('/archive');
     expect(paths).toContain('/contact');
   });
 
@@ -70,6 +72,6 @@ describe('routes', () => {
       .filter((route) => route.primary === false)
       .map((route) => route.path);
 
-    expect(secondaryPaths).toEqual(['/stats', '/projects']);
+    expect(secondaryPaths).toEqual(['/archive', '/stats']);
   });
 });

@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import { AUTHOR_NAME } from '@/lib/utils';
 
 interface ThemePortraitProps {
@@ -6,13 +8,6 @@ interface ThemePortraitProps {
   priority?: boolean;
 }
 
-/**
- * Portrait image component.
- *
- * Uses native <img> instead of next/image to:
- * - Avoid shipping next/image runtime for static export
- * - Reduce client-side JavaScript bundle
- */
 export default function ThemePortrait({
   width,
   height,
@@ -20,14 +15,13 @@ export default function ThemePortrait({
 }: ThemePortraitProps) {
   return (
     <span className="theme-portrait">
-      {/* biome-ignore lint/performance/noImgElement: Using native img to avoid next/image runtime overhead for static export */}
-      <img
-        src="/images/me.jpg"
-        alt={AUTHOR_NAME}
+      <Image
+        src="/images/me2-1.png"
+        alt={`${AUTHOR_NAME} portrait`}
         width={width}
         height={height}
-        loading={priority ? 'eager' : 'lazy'}
-        decoding="async"
+        priority={priority}
+        sizes={width >= 300 ? '(max-width: 760px) 180px, 320px' : '80px'}
       />
     </span>
   );

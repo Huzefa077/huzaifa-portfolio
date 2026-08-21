@@ -3,8 +3,6 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import profile from '../../../data/profile.json';
 import EmailLink from '../../Contact/EmailLink';
 
-const [localPart, domain] = profile.email.split('@');
-
 describe('EmailLink', () => {
   beforeEach(() => {
     vi.useFakeTimers();
@@ -28,10 +26,12 @@ describe('EmailLink', () => {
     vi.useRealTimers();
   });
 
-  it('renders the email domain', () => {
+  it('renders the complete email as a permanent second line', () => {
     render(<EmailLink />);
 
-    expect(screen.getByText(`@${domain}`)).toBeInTheDocument();
+    expect(screen.getByText(profile.email)).toHaveClass(
+      'contact-email-address',
+    );
   });
 
   it('renders as a link element', () => {
@@ -50,8 +50,8 @@ describe('EmailLink', () => {
     });
 
     // Initial state shows the real local-part (accessibility: never show empty)
-    const prefix = document.querySelector('.contact-email-prefix');
-    expect(prefix?.textContent).toBe(localPart);
+    const prefix = document.querySelector('.contact-email-message');
+    expect(prefix?.textContent).toBe('Assalamu Alaikum.');
 
     // Advance through multiple messages to verify animation works
     // Each message takes ~50 chars + 50 hold ticks at 50ms each
@@ -73,9 +73,7 @@ describe('EmailLink', () => {
   it('never blanks or snaps back to the address mid-animation', () => {
     render(<EmailLink loopMessage />);
     const prefix = () =>
-      document.querySelector('.contact-email-prefix')?.textContent ?? '';
-
-    let previous = prefix();
+      document.querySelector('.contact-email-message')?.textContent ?? '';
 
     // Two full cycles, so the loop wrap is covered as well as every boundary.
     for (let elapsed = 0; elapsed < 120_000; elapsed += 50) {
@@ -88,15 +86,9 @@ describe('EmailLink', () => {
       // The blank frame itself.
       expect(shown).not.toBe('');
 
-      // The flash is a *jump* to the complete address from some other alias
-      // already several characters long. Looping re-types the address
-      // legitimately, but that grows "h" -> "hi", so the previous frame is a
-      // single character and this guard leaves it alone.
-      if (previous.length > 1 && previous !== localPart) {
-        expect(shown).not.toBe(localPart);
-      }
-
-      previous = shown;
+      expect(screen.getByText(profile.email)).toHaveClass(
+        'contact-email-address',
+      );
     }
   });
 
@@ -108,7 +100,7 @@ describe('EmailLink', () => {
     });
 
     const settled = document.querySelector(
-      '.contact-email-prefix',
+      '.contact-email-message',
     )?.textContent;
 
     // A finished animation recorded completion only in `isActive`, so RESUME's
@@ -123,7 +115,7 @@ describe('EmailLink', () => {
       vi.advanceTimersByTime(5_000);
     });
 
-    expect(document.querySelector('.contact-email-prefix')?.textContent).toBe(
+    expect(document.querySelector('.contact-email-message')?.textContent).toBe(
       settled,
     );
   });
@@ -141,7 +133,7 @@ describe('EmailLink', () => {
     });
 
     const prefixBefore = document.querySelector(
-      '.contact-email-prefix',
+      '.contact-email-message',
     )?.textContent;
 
     // Pause on hover
@@ -153,7 +145,7 @@ describe('EmailLink', () => {
     });
 
     const prefixAfter = document.querySelector(
-      '.contact-email-prefix',
+      '.contact-email-message',
     )?.textContent;
 
     // Should be the same since animation is paused
@@ -229,7 +221,7 @@ describe('EmailLink', () => {
     expect(
       screen.getByRole('link', { name: `Email ${profile.email}` }),
     ).toBeInTheDocument();
-    expect(document.querySelector('.contact-email-prefix')).toHaveAttribute(
+    expect(document.querySelector('.contact-email-message')).toHaveAttribute(
       'aria-hidden',
       'true',
     );

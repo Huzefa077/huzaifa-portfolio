@@ -14,29 +14,16 @@ export default function Hero() {
           </h1>
 
           <p className="hero-tagline">
-            I&apos;m a {profile.role} at{' '}
-            <a href="https://openai.com" className="hero-highlight">
-              {profile.employer}
-            </a>
-            , working on{' '}
-            <a href="https://promptfoo.dev" className="hero-highlight">
-              Promptfoo
-            </a>{' '}
-            and{' '}
-            <a
-              href="https://openai.com/index/codex-security-now-in-research-preview/"
-              className="hero-highlight"
-            >
-              Codex Security
-            </a>
-            . I help secure AI systems and use AI to find software
-            vulnerabilities. I co-founded Promptfoo before it joined OpenAI in
-            2026.
+            I&apos;m a {profile.role} focused on building practical applications
+            that solve real problems and make everyday life easier. I work
+            across React, Next.js, Node.js, PostgreSQL, and MongoDB while
+            exploring AI-powered products and growing toward a career in data
+            analytics.
           </p>
 
           <div className="hero-cta">
-            <Link href="/about" className="button">
-              About Me
+            <Link href="/projects" className="button">
+              View Projects
             </Link>
             <Link href="/resume" className="hero-resume-link">
               View Resume

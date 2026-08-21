@@ -22,7 +22,7 @@ export default function ContactPage() {
 
         <div className="contact-content">
           <div className="contact-email-block">
-            <EmailLink />
+            <EmailLink loopMessage />
             <p className="contact-hint">Usually respond within 24 hours</p>
           </div>
 

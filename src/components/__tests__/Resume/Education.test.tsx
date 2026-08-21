@@ -8,13 +8,12 @@ const mockDegrees = [
   {
     school: 'Stanford University',
     degree: 'M.S. Computer Science',
-    link: 'https://stanford.edu',
     year: 2020,
   },
   {
     school: 'MIT',
     degree: 'B.S. Computer Science',
-    link: 'https://mit.edu',
+    link: 'https://www.mit.edu/',
     year: 2016,
   },
 ];
@@ -35,14 +34,15 @@ describe('Education', () => {
     expect(screen.getByText('B.S. Computer Science')).toBeInTheDocument();
   });
 
-  it('renders school links', () => {
+  it('links only schools that provide a URL', () => {
     render(<Education data={mockDegrees} />);
 
-    const stanfordLink = screen.getByRole('link', { name: /stanford/i });
-    expect(stanfordLink).toHaveAttribute('href', 'https://stanford.edu');
-
-    const mitLink = screen.getByRole('link', { name: /mit/i });
-    expect(mitLink).toHaveAttribute('href', 'https://mit.edu');
+    expect(screen.getByText('Stanford University')).toBeInTheDocument();
+    expect(screen.getByText('Stanford University').closest('a')).toBeNull();
+    expect(screen.getByRole('link', { name: 'MIT' })).toHaveAttribute(
+      'href',
+      'https://www.mit.edu/',
+    );
   });
 });
 
@@ -50,7 +50,6 @@ describe('Degree', () => {
   const mockDegree = {
     school: 'Stanford University',
     degree: 'M.S. Computer Science',
-    link: 'https://stanford.edu',
     year: 2020,
   };
 
@@ -62,11 +61,19 @@ describe('Degree', () => {
     );
   });
 
-  it('renders school name with link', () => {
+  it('renders the school name without a link', () => {
     render(<Degree data={mockDegree} />);
 
-    const link = screen.getByRole('link', { name: /stanford/i });
-    expect(link).toHaveAttribute('href', 'https://stanford.edu');
+    expect(screen.getByText('Stanford University')).toBeInTheDocument();
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
+  });
+
+  it('renders the school name as a link when one is provided', () => {
+    render(<Degree data={{ ...mockDegree, link: 'https://example.edu/' }} />);
+
+    expect(
+      screen.getByRole('link', { name: 'Stanford University' }),
+    ).toHaveAttribute('href', 'https://example.edu/');
   });
 
   it('displays year', () => {

@@ -14,9 +14,9 @@ describe('Footer', () => {
   it('displays the name and role', () => {
     render(<Footer />);
 
-    expect(screen.getByText("Michael D'Angelo")).toBeInTheDocument();
+    expect(screen.getByText('Huzaifa Sheikh')).toBeInTheDocument();
     expect(
-      screen.getByText('Member of the Technical Staff at OpenAI'),
+      screen.getByText('JavaScript Full Stack Developer'),
     ).toBeInTheDocument();
   });
 
@@ -46,16 +46,33 @@ describe('Footer', () => {
       'href',
       '/resume',
     );
-    // Labelled "Archive" to match the nav and the page's own heading;
-    // the route stays /projects.
-    expect(screen.getByRole('link', { name: /archive/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /projects/i })).toHaveAttribute(
       'href',
       '/projects',
+    );
+    expect(screen.getByRole('link', { name: /blog/i })).toHaveAttribute(
+      'href',
+      '/blog',
+    );
+    expect(screen.getByRole('link', { name: /archive/i })).toHaveAttribute(
+      'href',
+      '/archive',
     );
     expect(screen.getByRole('link', { name: /contact/i })).toHaveAttribute(
       'href',
       '/contact',
     );
+  });
+
+  it('links the copyright identity to the GitHub profile', () => {
+    render(<Footer />);
+
+    const githubLinks = screen.getAllByRole('link', { name: /github/i });
+    expect(
+      githubLinks.some(
+        (link) => link.getAttribute('href') === 'https://github.com/Huzefa077',
+      ),
+    ).toBe(true);
   });
 
   it('renders contact icons section', () => {

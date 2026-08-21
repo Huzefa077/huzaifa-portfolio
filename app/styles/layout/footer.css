@@ -93,6 +93,11 @@
   transition: filter var(--duration-fast) var(--ease-out);
 }
 
+.site-footer-new .footer-avatar .theme-portrait {
+  width: 100%;
+  height: 100%;
+}
+
 .site-footer-new .footer-avatar:hover img,
 .site-footer-new .footer-avatar:focus-visible img {
   filter: none;

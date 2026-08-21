@@ -1,15 +1,13 @@
 import Link from 'next/link';
 
 import ContactIcons from '@/components/Contact/ContactIcons';
-import work from '@/data/resume/work';
+import profile from '@/data/profile.json';
 import routes from '@/data/routes';
 import { AUTHOR_NAME } from '@/lib/utils';
 
 import ThemePortrait from './ThemePortrait';
 
 export default function Footer() {
-  const currentRole = `${work[0].position} at ${work[0].name}`;
-
   return (
     <footer className="site-footer-new">
       <div className="footer-content">
@@ -19,15 +17,15 @@ export default function Footer() {
           </Link>
           <div className="footer-info">
             <span className="footer-name">{AUTHOR_NAME}</span>
-            <p className="footer-role">{currentRole}</p>
+            <p className="footer-role">{profile.role}</p>
             <p className="footer-copyright">
               &copy; {new Date().getFullYear()} ·{' '}
               <a
-                href="https://github.com/mldangelo/personal-site"
+                href="https://github.com/Huzefa077"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Source
+                GitHub
                 <span className="sr-only"> (opens in new tab)</span>
               </a>
             </p>
@@ -45,7 +43,11 @@ export default function Footer() {
             </span>
             <div className="footer-links-grid">
               {routes
-                .filter((route) => !route.index)
+                .filter(
+                  (route) =>
+                    !route.index &&
+                    (route.primary !== false || route.footerOnly === true),
+                )
                 .map((route) => (
                   <Link key={route.path} href={route.path}>
                     {route.label}

@@ -323,9 +323,9 @@
 /* The address is the page's one instruction, so it is set as a
    readout in mono rather than dressed up as a tinted button. */
 .contact-email-link {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: baseline;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   max-width: 100%;
   padding: 0.875rem 0;
@@ -358,18 +358,24 @@
 /* Flex items default to min-width:auto and refuse to shrink below their
    content, so the wrapping allowed on the link above never reached the long
    animated alias. Both halves have to opt in individually. */
-.contact-email-prefix,
-.contact-email-domain {
+.contact-email-message,
+.contact-email-address {
+  display: block;
+  max-width: 100%;
   min-width: 0;
   overflow-wrap: anywhere;
 }
 
-.contact-email-prefix {
+.contact-email-message {
   color: var(--color-accent);
+  text-wrap: balance;
 }
 
-.contact-email-domain {
+.contact-email-address {
+  margin-top: 0.45em;
   color: var(--color-fg-bold);
+  font-size: clamp(var(--text-md), 3vw, var(--text-xl));
+  line-height: var(--leading-snug);
 }
 
 .contact-hint {
