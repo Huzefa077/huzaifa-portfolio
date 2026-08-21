@@ -178,6 +178,7 @@ jobs:
         uses: actions/configure-pages@v6
         with:
           static_site_generator: next
+          enablement: true
 
       - name: Build
         run: npm run build
