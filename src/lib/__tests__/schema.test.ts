@@ -100,8 +100,8 @@ describe('profilePageNode', () => {
 describe('collectionPageNode', () => {
   it('is a CollectionPage that is about the Person', () => {
     const node = collectionPageNode({
-      url: `${SITE_URL}/writing/`,
-      name: 'Writing',
+      url: `${SITE_URL}/blog/`,
+      name: 'Blog',
     });
     expect(node['@type']).toBe('CollectionPage');
     expect((node.about as Record<string, unknown>)['@id']).toBe(PERSON_ID);
@@ -115,7 +115,7 @@ describe('blogNode', () => {
     expect(node['@id']).toBe(BLOG_ID);
     expect((node.isPartOf as Record<string, unknown>)['@id']).toBe(WEBSITE_ID);
     expect((node.mainEntityOfPage as Record<string, unknown>)['@id']).toBe(
-      `${SITE_URL}/writing/#webpage`,
+      `${SITE_URL}/blog/#webpage`,
     );
     expect((node.publisher as Record<string, unknown>)['@id']).toBe(PERSON_ID);
     expect(node.dateModified).toBe('2024-01-15');
@@ -129,7 +129,7 @@ describe('blogNode', () => {
 describe('blogPostingNode', () => {
   it('is a BlogPosting wired to the Person, Blog, and its WebPage', () => {
     const node = blogPostingNode(mockPost);
-    const url = `${SITE_URL}/writing/${mockPost.slug}/`;
+    const url = `${SITE_URL}/blog/${mockPost.slug}/`;
     expect(node['@type']).toBe('BlogPosting');
     expect(node['@id']).toBe(`${url}#blogposting`);
     expect(node.headline).toBe(mockPost.title);
@@ -154,13 +154,13 @@ describe('blogPostingNode', () => {
 
   it('accepts a representative article image and caption', () => {
     const image = blogPostingNode(mockPost, {
-      url: `${SITE_URL}/images/writing/example.png`,
+      url: `${SITE_URL}/images/blog/example.png`,
       width: 1117,
       height: 812,
       alt: 'A representative screenshot',
     }).image as Record<string, unknown>;
 
-    expect(image.url).toBe(`${SITE_URL}/images/writing/example.png`);
+    expect(image.url).toBe(`${SITE_URL}/images/blog/example.png`);
     expect(image.width).toBe(1117);
     expect(image.height).toBe(812);
     expect(image.caption).toBe('A representative screenshot');
@@ -169,7 +169,7 @@ describe('blogPostingNode', () => {
 
 describe('webPageNode', () => {
   it('is a WebPage linked to the site', () => {
-    const url = `${SITE_URL}/writing/test-article/`;
+    const url = `${SITE_URL}/blog/test-article/`;
     const node = webPageNode({ url, name: 'Test Article Title' });
     expect(node['@type']).toBe('WebPage');
     expect(node['@id']).toBe(`${url}#webpage`);
@@ -179,10 +179,10 @@ describe('webPageNode', () => {
 
 describe('breadcrumbNode', () => {
   it('builds an ordered BreadcrumbList anchored to the page', () => {
-    const url = `${SITE_URL}/writing/`;
+    const url = `${SITE_URL}/blog/`;
     const node = breadcrumbNode(url, [
       { name: 'Home', url: HOME_URL },
-      { name: 'Writing', url },
+      { name: 'Blog', url },
     ]);
     expect(node['@type']).toBe('BreadcrumbList');
     expect(node['@id']).toBe(`${url}#breadcrumb`);

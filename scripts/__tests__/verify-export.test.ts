@@ -60,7 +60,7 @@ function createFixture({ basePath = '' } = {}) {
   write(root, 'package.json', JSON.stringify({ homepage: siteRoot }));
   write(
     root,
-    'content/writing/secret-draft.md',
+    'content/blog/secret-draft.md',
     '---\ntitle: Secret draft\ndraft: true # keep private\n---\n',
   );
   write(
@@ -288,14 +288,14 @@ describe('verify-export', () => {
     mutate(root, 'out/sitemap.xml', (xml) =>
       xml.replace(
         '</urlset>',
-        '<url><loc>https://example.com/writing/secret-draft/</loc></url></urlset>',
+        '<url><loc>https://example.com/blog/secret-draft/</loc></url></urlset>',
       ),
     );
 
     const result = runVerifier(root);
     expect(result.status).toBe(1);
     expect(result.output).toContain(
-      'sitemap.xml\n    exposes draft route: /writing/secret-draft/',
+      'sitemap.xml\n    exposes draft route: /blog/secret-draft/',
     );
   });
 
@@ -304,14 +304,14 @@ describe('verify-export', () => {
     mutate(root, 'out/feed.xml', (xml) =>
       xml.replace(
         '</channel>',
-        '<item><link>https://example.com/writing/secret-draft/</link></item></channel>',
+        '<item><link>https://example.com/blog/secret-draft/</link></item></channel>',
       ),
     );
 
     const result = runVerifier(root);
     expect(result.status).toBe(1);
     expect(result.output).toContain(
-      'feed.xml\n    exposes draft route: /writing/secret-draft/',
+      'feed.xml\n    exposes draft route: /blog/secret-draft/',
     );
   });
 

@@ -25,7 +25,7 @@ export interface Post {
   imageAlt?: string;
 }
 
-const postsDirectory = path.join(process.cwd(), 'content/writing');
+const postsDirectory = path.join(process.cwd(), 'content/blog');
 
 /**
  * Drafts are visible while running `next dev` and never anywhere else.
@@ -199,7 +199,7 @@ export function getPostSlugs(): string[] {
  * A post, or null when it does not exist or is not publishable.
  *
  * Returning null for a draft is what makes the route `notFound()` rather than
- * render it, so a direct URL cannot reach unpublished writing in production.
+ * render it, so a direct URL cannot reach unpublished posts in production.
  * Resolving against `getAllPosts` rather than re-reading the file keeps this on
  * the same `isPublished` path as every other reader, and means a slug never
  * reaches the filesystem.
@@ -224,7 +224,7 @@ function readPublishedPosts(): Post[] {
  * Parsed posts, held for the life of the process.
  *
  * A static export reaches this from four independent entry points — the
- * sitemap, the feed, the writing index, and `generateStaticParams` — and then
+ * sitemap, the feed, the blog index, and `generateStaticParams` — and then
  * twice more per post route, once in `generateMetadata` and once in the page.
  * Uncached, each of those re-walked the directory and re-parsed every file.
  *

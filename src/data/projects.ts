@@ -13,10 +13,12 @@ export interface Project {
 const data: Project[] = [
   {
     title: 'Tarbiyah Planner',
-    subtitle: 'Personalized activity planning for families',
+    subtitle: 'Help your child build good habits',
     liveUrl: 'https://tarbiyah-planner.vercel.app/',
     githubUrl: 'https://github.com/Huzefa077/tarbiyah-planner',
-    desc: 'A full-stack application that helps parents create personalized, printable activity planners for children, with routine management and daily, weekly, and monthly PDF exports.',
+    image: '/images/projects/tarbiyah-planner.png',
+    imageAlt: 'Child using a printed Tarbiyah Planner activity chart',
+    desc: 'Help children build good habits through shared routines, visible progress, and meaningful rewards agreed on with their parents.',
     tech: [
       'Next.js',
       'TypeScript',

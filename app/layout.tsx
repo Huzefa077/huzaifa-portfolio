@@ -31,6 +31,9 @@ export const metadata: Metadata = {
   authors: [{ name: AUTHOR_NAME }],
   creator: AUTHOR_NAME,
   metadataBase: new URL(SITE_URL),
+  icons: {
+    icon: '/images/favicon/favicon.svg',
+  },
   // The root is the origin of the share metadata, so it uses the same shared
   // blocks as every other page. Hand-writing them here is what left the
   // homepage advertising a different og:image:alt from the rest of the site

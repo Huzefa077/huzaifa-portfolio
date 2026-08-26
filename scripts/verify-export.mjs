@@ -15,7 +15,7 @@ import matter from 'gray-matter';
 
 const ROOT = process.cwd();
 const OUT = resolve(ROOT, 'out');
-const CONTENT = resolve(ROOT, 'content/writing');
+const CONTENT = resolve(ROOT, 'content/blog');
 
 const failures = [];
 const fail = (page, message) => failures.push({ page, message });
@@ -155,8 +155,7 @@ const draftSlugs = walk(CONTENT, (name) => name.endsWith('.md'))
 function isDraftPath(pathname) {
   const route = routeForPublicPath(pathname) ?? pathname;
   return draftSlugs.some(
-    (slug) =>
-      route === `/writing/${slug}` || route.startsWith(`/writing/${slug}/`),
+    (slug) => route === `/blog/${slug}` || route.startsWith(`/blog/${slug}/`),
   );
 }
 

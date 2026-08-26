@@ -1,4 +1,4 @@
-import writing from '@/data/writing';
+import blog from '@/data/blog';
 import { getAllPosts } from '@/lib/posts';
 import { AUTHOR_NAME, SITE_URL } from '@/lib/utils';
 
@@ -37,7 +37,7 @@ export async function GET() {
   }));
 
   // Get external articles
-  const externalItems: FeedItem[] = writing
+  const externalItems: FeedItem[] = blog
     .filter((item) => item.date)
     .map((item) => ({
       title: item.title,

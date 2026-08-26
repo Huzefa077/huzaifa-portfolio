@@ -27,17 +27,17 @@ Use the full rebrand prompt in the
 [README](../README.md#adapt-it-with-a-coding-agent) for a first pass. For a
 smaller change, copy one of these.
 
-### Manage writing
+### Manage the blog
 
 ```text
 Read AGENTS.md and work on a topic branch. Do not commit, push, merge, or change
 account settings unless I explicitly authorize it.
-Manage writing for this site as follows: [ADD, UPDATE, OR REMOVE CONTENT].
-Use content/writing/ for local posts and src/data/writing.ts for external
-links. Preserve draft isolation, RSS, the homepage writing section, metadata,
+Manage the blog for this site as follows: [ADD, UPDATE, OR REMOVE CONTENT].
+Use content/blog/ for local posts and src/data/blog.ts for external
+links. Preserve draft isolation, RSS, the homepage blog section, metadata,
 and valid post slugs. Pair each frontmatter `image` with `imageAlt`, and give
 Markdown images descriptive alt text. Keep at least one published post unless I
-asked you to remove writing completely. Run the full validation suite and
+asked you to remove the blog completely. Run the full validation suite and
 report unresolved content decisions or validation failures.
 ```
 
@@ -136,18 +136,18 @@ the `page.tsx` files under `app/`. Structured data is assembled in
 The current role appears in the profile, homepage, résumé, and page metadata.
 Update those together.
 
-### Writing
+### Blog
 
-Writing comes from two places:
+Blog entries come from two places:
 
-- Markdown posts in `content/writing/`
-- External articles in `src/data/writing.ts`
+- Markdown posts in `content/blog/`
+- External articles in `src/data/blog.ts`
 
-Both sources appear on `/writing/`. Dated entries can also appear on the
+Both sources appear on `/blog/`. Dated entries can also appear on the
 homepage and in the RSS feed.
 
 Local posts are Markdown files. The filename becomes the URL slug, so
-`my-post.md` becomes `/writing/my-post/`. Valid filenames use lowercase letters
+`my-post.md` becomes `/blog/my-post/`. Valid filenames use lowercase letters
 and numbers separated by single hyphens.
 
 ```markdown
@@ -168,17 +168,17 @@ with `imageAlt`.
 The production export requires at least one published post. It cannot build the
 dynamic post route when `generateStaticParams()` has no published slugs.
 
-Removing the Writing link from `src/data/routes.ts` only hides it from
-navigation. The homepage still promotes writing, and the routes remain
+Removing the Blog link from `src/data/routes.ts` only hides it from
+navigation. The homepage still promotes the blog, and the routes remain
 available by URL.
 
 Full removal requires a consumer search before any files are deleted:
 
 ```bash
-rg -n -i "writing|feed\\.xml|getWritingItems|getAllPosts" app src scripts
+rg -n -i "blog|feed\\.xml|getBlogItems|getAllPosts" app src scripts
 ```
 
-A complete removal touches the writing routes, feed, content loaders, homepage
+A complete removal touches the blog routes, feed, content loaders, homepage
 section, sitemap, schema, export verifier, styles, and tests. Run a production
 build after the refactor.
 

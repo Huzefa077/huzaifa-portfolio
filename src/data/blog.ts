@@ -1,4 +1,4 @@
-export interface WritingItem {
+export interface BlogItem {
   title: string;
   url: string;
   date: string;
@@ -6,6 +6,6 @@ export interface WritingItem {
 }
 
 // External articles can be added here when Huzaifa publishes them.
-const data: WritingItem[] = [];
+const data: BlogItem[] = [];
 
 export default data;

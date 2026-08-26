@@ -31,20 +31,20 @@ describe('validatePostFrontmatter', () => {
     [{ ...validFrontmatter, imageAlt: 'A card' }, '"image"'],
   ])('rejects malformed frontmatter %#', (frontmatter, field) => {
     expect(() =>
-      validatePostFrontmatter(frontmatter, 'content/writing/example.md'),
-    ).toThrow(`Invalid frontmatter in content/writing/example.md: ${field}`);
+      validatePostFrontmatter(frontmatter, 'content/blog/example.md'),
+    ).toThrow(`Invalid frontmatter in content/blog/example.md: ${field}`);
   });
 
   it('accepts an explicitly described article image', () => {
     expect(
       validatePostFrontmatter({
         ...validFrontmatter,
-        image: '/images/writing/card.png',
+        image: '/images/blog/card.png',
         imageAlt: 'A descriptive alternative',
       }),
     ).toEqual({
       ...validFrontmatter,
-      image: '/images/writing/card.png',
+      image: '/images/blog/card.png',
       imageAlt: 'A descriptive alternative',
     });
   });

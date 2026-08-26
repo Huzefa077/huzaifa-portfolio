@@ -181,7 +181,7 @@ describe('readPostImageSizes', () => {
   it('fails the build for a missing root-local Markdown image', () => {
     expect(() =>
       readPostImageSizes(
-        '![missing](/images/writing/definitely-missing.png "Missing")',
+        '![missing](/images/blog/definitely-missing.png "Missing")',
       ),
     ).toThrow(/Local image does not exist/);
   });

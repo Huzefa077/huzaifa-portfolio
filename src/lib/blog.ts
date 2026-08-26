@@ -1,7 +1,7 @@
-import externalWriting from '@/data/writing';
+import externalBlogPosts from '@/data/blog';
 import { getAllPosts } from '@/lib/posts';
 
-export interface WritingItem {
+export interface BlogItem {
   title: string;
   url: string;
   date: string;
@@ -11,7 +11,7 @@ export interface WritingItem {
 }
 
 /** Stable newest-first order; undated guides sort by title at the end. */
-export function compareWritingItems(a: WritingItem, b: WritingItem): number {
+export function compareBlogItems(a: BlogItem, b: BlogItem): number {
   if (!a.date && !b.date) {
     return a.title.localeCompare(b.title) || a.url.localeCompare(b.url);
   }
@@ -33,21 +33,21 @@ function externalSource(url: string): string {
   return hostname;
 }
 
-/** Published on-site posts and selected external writing, newest first. */
-export function getWritingItems(): WritingItem[] {
-  const internal: WritingItem[] = getAllPosts().map((post) => ({
+/** Published on-site posts and selected external articles, newest first. */
+export function getBlogItems(): BlogItem[] {
+  const internal: BlogItem[] = getAllPosts().map((post) => ({
     title: post.title,
-    url: `/writing/${post.slug}/`,
+    url: `/blog/${post.slug}/`,
     date: post.date,
     description: post.description,
     isExternal: false,
     source: 'On this site',
   }));
-  const external: WritingItem[] = externalWriting.map((item) => ({
+  const external: BlogItem[] = externalBlogPosts.map((item) => ({
     ...item,
     isExternal: true,
     source: externalSource(item.url),
   }));
 
-  return [...internal, ...external].sort(compareWritingItems);
+  return [...internal, ...external].sort(compareBlogItems);
 }

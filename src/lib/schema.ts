@@ -29,8 +29,8 @@ export const BLOG_ID = `${SITE_URL}/blog/#blog`;
 export const SITE_LANGUAGE = 'en-US';
 export const HOME_URL = `${SITE_URL}/`;
 
-// Shared so the /writing metadata and the Blog node stay in sync.
-export const WRITING_DESCRIPTION =
+// Shared so the /blog metadata and the Blog node stay in sync.
+export const BLOG_DESCRIPTION =
   'Practical notes from Huzaifa Sheikh on web development, projects, and technology.';
 
 type SchemaNode = Record<string, unknown>;
@@ -159,7 +159,7 @@ export function profilePageNode(options: PageNodeOptions): SchemaNode {
   };
 }
 
-/** A WebPage subtype for pages that primarily list things (e.g. writing, archive). */
+/** A WebPage subtype for pages that primarily list things (e.g. blog, archive). */
 export function collectionPageNode(options: PageNodeOptions): SchemaNode {
   return {
     ...baseWebPage('CollectionPage', options),
@@ -181,9 +181,9 @@ export function blogNode(dateModified?: string): SchemaNode {
     '@type': 'Blog',
     '@id': BLOG_ID,
     isPartOf: websiteRef(),
-    mainEntityOfPage: { '@id': `${SITE_URL}/writing/#webpage` },
-    name: `${AUTHOR_NAME}'s Writing`,
-    description: WRITING_DESCRIPTION,
+    mainEntityOfPage: { '@id': `${SITE_URL}/blog/#webpage` },
+    name: `${AUTHOR_NAME}'s Blog`,
+    description: BLOG_DESCRIPTION,
     inLanguage: SITE_LANGUAGE,
     ...(dateModified ? { dateModified } : {}),
     publisher: personRef(),
@@ -195,7 +195,7 @@ export function blogPostingNode(
   post: Post,
   articleImage?: ArticleImage,
 ): SchemaNode {
-  const url = `${SITE_URL}/writing/${post.slug}/`;
+  const url = `${SITE_URL}/blog/${post.slug}/`;
   const image = articleImage ?? {
     url: `${SITE_URL}${SHARE_IMAGE_PATH}`,
     width: SHARE_IMAGE_DIMENSIONS.width,

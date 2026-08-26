@@ -1,15 +1,15 @@
 import { describe, expect, it } from 'vitest';
 
-import writing from '../writing';
+import blog from '../blog';
 
-describe('writing data', () => {
+describe('blog data', () => {
   it('starts empty until external articles are published', () => {
-    expect(Array.isArray(writing)).toBe(true);
-    expect(writing).toEqual([]);
+    expect(Array.isArray(blog)).toBe(true);
+    expect(blog).toEqual([]);
   });
 
   it('each item has required properties', () => {
-    for (const item of writing) {
+    for (const item of blog) {
       expect(item).toHaveProperty('title');
       expect(item).toHaveProperty('url');
       expect(item).toHaveProperty('date');
@@ -23,13 +23,13 @@ describe('writing data', () => {
   });
 
   it('titles are non-empty', () => {
-    for (const item of writing) {
+    for (const item of blog) {
       expect(item.title.trim().length).toBeGreaterThan(0);
     }
   });
 
   it('descriptions are non-empty', () => {
-    for (const item of writing) {
+    for (const item of blog) {
       expect(item.description.trim().length).toBeGreaterThan(0);
     }
   });
@@ -37,13 +37,13 @@ describe('writing data', () => {
   it('urls are valid', () => {
     const urlRegex = /^https?:\/\/.+/;
 
-    for (const item of writing) {
+    for (const item of blog) {
       expect(item.url).toMatch(urlRegex);
     }
   });
 
   it('dates are valid when non-empty', () => {
-    for (const item of writing) {
+    for (const item of blog) {
       if (item.date && item.date.trim().length > 0) {
         const date = new Date(item.date);
         expect(date.toString()).not.toBe('Invalid Date');
@@ -52,21 +52,21 @@ describe('writing data', () => {
   });
 
   it('has unique titles', () => {
-    const titles = writing.map((w) => w.title);
+    const titles = blog.map((item) => item.title);
     const uniqueTitles = new Set(titles);
 
     expect(uniqueTitles.size).toBe(titles.length);
   });
 
   it('has unique urls', () => {
-    const urls = writing.map((w) => w.url);
+    const urls = blog.map((item) => item.url);
     const uniqueUrls = new Set(urls);
 
     expect(uniqueUrls.size).toBe(urls.length);
   });
 
   it('items with dates are sorted by date (most recent first)', () => {
-    const itemsWithDates = writing.filter(
+    const itemsWithDates = blog.filter(
       (item) => item.date && item.date.trim().length > 0,
     );
 
