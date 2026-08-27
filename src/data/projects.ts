@@ -33,6 +33,8 @@ const data: Project[] = [
     subtitle: 'AI-powered facial attribute analysis',
     liveUrl: 'https://ocula-frontend.vercel.app/',
     githubUrl: 'https://github.com/Huzefa077/ocula-frontend',
+    image: '/images/projects/ocula-image.png',
+    imageAlt: 'Human Face with analysis report',
     desc: 'A deployed full-stack application that detects faces from image URLs and predicts age, gender, and facial expression, with clear loading and error states.',
     tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'face-api.js'],
   },
@@ -41,6 +43,8 @@ const data: Project[] = [
     subtitle: 'Personalized diet and meal planning',
     liveUrl: 'https://diet-planner-ten-wheat.vercel.app/',
     githubUrl: 'https://github.com/Huzefa077/diet_planner',
+    image: '/images/projects/nutriwise-image.png',
+    imageAlt: 'Website homepage photo',
     desc: 'A secure diet-planning platform that calculates calorie and macronutrient targets and recommends nutritionally similar meals using cosine similarity.',
     tech: [
       'React',
