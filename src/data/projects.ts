@@ -29,7 +29,7 @@ const data: Project[] = [
     ],
   },
   {
-    title: 'Face Detection & Analysis',
+    title: 'Face Detection & Analysis\n (Under Maintainence)',
     subtitle: 'AI-powered facial attribute analysis',
     liveUrl: 'https://ocula-frontend.vercel.app/',
     githubUrl: 'https://github.com/Huzefa077/ocula-frontend',
@@ -39,7 +39,7 @@ const data: Project[] = [
     tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'face-api.js'],
   },
   {
-    title: 'NutriWise',
+    title: 'NutriWise \n(Under Maintainence)',
     subtitle: 'Personalized diet and meal planning',
     liveUrl: 'https://diet-planner-ten-wheat.vercel.app/',
     githubUrl: 'https://github.com/Huzefa077/diet_planner',
