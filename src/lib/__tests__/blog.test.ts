@@ -3,8 +3,17 @@ import { describe, expect, it } from 'vitest';
 import { type BlogItem, compareBlogItems, getBlogItems } from '../blog';
 
 describe('getBlogItems', () => {
-  it('returns no items before the first blog post is published', () => {
-    expect(getBlogItems()).toEqual([]);
+  it('returns published blog posts', () => {
+    const items = getBlogItems();
+
+    expect(items.length).toBeGreaterThan(0);
+    expect(items[0]).toMatchObject({
+      title: 'How Video Streaming Actually Works: Protocols, Codecs, and the Basics',
+      url: '/blog/how-video-streaming-works/',
+      date: '2026-08-27',
+      isExternal: false,
+      source: 'On this site',
+    });
   });
 
   it('orders equal and undated entries deterministically', () => {
