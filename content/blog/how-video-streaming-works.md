@@ -4,8 +4,6 @@ date: "2026-08-27"
 description: "A beginner-friendly breakdown of how video streaming works — what protocols and codecs are, how they differ, and why you need both."
 ---
 
-# How Video Streaming Actually Works: Protocols, Codecs, and the Basics
-
 You hit play on Netflix. Half a second later, video appears. No download bar, no "please wait" — it just plays.
 
 That half-second is hiding a small miracle of engineering. This post pulls back the curtain on the two ideas that make it possible: **codecs** and **protocols**. Nothing here assumes prior networking or video knowledge — we're starting from zero.

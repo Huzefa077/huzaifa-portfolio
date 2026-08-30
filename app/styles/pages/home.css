@@ -330,6 +330,13 @@
   transition: background-color var(--duration-instant) var(--ease-out);
 }
 
+.home-writing-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  background-image: none;
+}
+
 .home-writing-item:first-child {
   padding-left: 0;
 }
@@ -340,7 +347,7 @@
 }
 
 .home-writing-item:hover,
-.home-writing-item:focus-visible {
+.home-writing-item:focus-within {
   background-color: var(--color-surface-subtle);
 }
 
@@ -354,7 +361,7 @@
 }
 
 .home-writing-item:hover h3,
-.home-writing-item:focus-visible h3 {
+.home-writing-item:focus-within h3 {
   color: var(--color-accent);
 }
 
@@ -363,6 +370,10 @@
   font-size: var(--text-sm);
   line-height: var(--leading-snug);
   color: var(--color-fg-light);
+}
+
+.home-writing-share {
+  margin-top: 1rem;
 }
 
 @media (max-width: 760px) {

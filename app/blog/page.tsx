@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
+import ShareButton from '@/components/Blog/ShareButton';
 import { SchemaGraph } from '@/components/Schema';
 import PageWrapper from '@/components/Template/PageWrapper';
 import externalPosts from '@/data/blog';
@@ -78,8 +79,8 @@ export default function BlogPage() {
             </a>
           </div>
           <p className="page-subtitle">
-            Practical notes on development, projects, and what I learn along
-            the way.
+            Practical notes on development, projects, and what I learn along the
+            way.
           </p>
         </header>
 
@@ -95,49 +96,59 @@ export default function BlogPage() {
               const itemClassName = `writing-item${
                 index === 0 ? ' writing-item--featured' : ''
               }`;
+              const shareUrl = entry.external
+                ? entry.href
+                : `${SITE_URL}${entry.href}`;
 
               if (!entry.external) {
                 return (
-                  <Link
-                    key={entry.href}
+                  <article key={entry.href} className={itemClassName}>
+                    <Link href={entry.href} className="writing-item-link">
+                      <span className="writing-meta">
+                        <time className="writing-date" dateTime={entry.date}>
+                          {formatDate(entry.date)}
+                        </time>
+                      </span>
+                      <h2 className="writing-title">{entry.title}</h2>
+                      <p className="writing-description">{entry.description}</p>
+                    </Link>
+                    <ShareButton
+                      title={entry.title}
+                      url={shareUrl}
+                      className="writing-share"
+                    />
+                  </article>
+                );
+              }
+
+              return (
+                <article key={entry.href} className={itemClassName}>
+                  <a
                     href={entry.href}
-                    className={itemClassName}
+                    className="writing-item-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <span className="writing-meta">
                       <time className="writing-date" dateTime={entry.date}>
                         {formatDate(entry.date)}
                       </time>
+                      <span className="writing-source">External</span>
                     </span>
-                    <h2 className="writing-title">{entry.title}</h2>
-                    <p className="writing-description">
-                      {entry.description}
-                    </p>
-                  </Link>
-                );
-              }
-
-              return (
-                <a
-                  key={entry.href}
-                  href={entry.href}
-                  className={itemClassName}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="writing-meta">
-                    <time className="writing-date" dateTime={entry.date}>
-                      {formatDate(entry.date)}
-                    </time>
-                    <span className="writing-source">External</span>
-                  </span>
-                  <h2 className="writing-title">
-                    {entry.title}
-                    <span className="writing-external" aria-hidden="true">
-                      ↗
-                    </span>
-                  </h2>
-                  <p className="writing-description">{entry.description}</p>
-                </a>
+                    <h2 className="writing-title">
+                      {entry.title}
+                      <span className="writing-external" aria-hidden="true">
+                        ↗
+                      </span>
+                    </h2>
+                    <p className="writing-description">{entry.description}</p>
+                  </a>
+                  <ShareButton
+                    title={entry.title}
+                    url={shareUrl}
+                    className="writing-share"
+                  />
+                </article>
               );
             })}
           </div>

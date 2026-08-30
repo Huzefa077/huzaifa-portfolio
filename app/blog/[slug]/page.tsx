@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 
 import PostContent from '@/components/Blog/PostContent';
 import ReadingProgress from '@/components/Blog/ReadingProgress';
+import ShareButton from '@/components/Blog/ShareButton';
 import { SchemaGraph } from '@/components/Schema';
 import PageWrapper from '@/components/Template/PageWrapper';
 import { sharedOpenGraph, sharedTwitter } from '@/lib/metadata';
@@ -88,6 +89,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </time>
           <h1 className="post-title">{post.title}</h1>
           <p className="post-description">{post.description}</p>
+          <ShareButton title={post.title} url={url} className="post-share" />
         </header>
         <div className="prose">
           <PostContent content={post.content} />

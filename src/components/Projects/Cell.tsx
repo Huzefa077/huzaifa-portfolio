@@ -58,7 +58,12 @@ export default function Cell({ data }: CellProps) {
         <footer className="project-card-footer">
           <div className="project-card-actions">
             {liveUrl && (
-              <a href={liveUrl} className="project-card-action">
+              <a
+                href={liveUrl}
+                className="project-card-action"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Live demo <span aria-hidden="true">↗</span>
               </a>
             )}
