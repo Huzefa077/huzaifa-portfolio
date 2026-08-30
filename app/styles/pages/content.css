@@ -40,7 +40,7 @@
   gap: 1.5rem;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
-  scrollbar-width: thin;
+  scrollbar-width: none;
   margin: var(--spacing-10) 0 var(--spacing-6);
   padding: 0.75rem 0;
   border-top: var(--rule) solid var(--color-border);
@@ -48,6 +48,10 @@
   border-radius: 0;
   background: var(--color-bg-alt);
   box-shadow: none;
+}
+
+.about-section-nav::-webkit-scrollbar {
+  display: none;
 }
 
 .about-content .about-section-nav-link {
