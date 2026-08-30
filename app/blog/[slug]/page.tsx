@@ -6,6 +6,7 @@ import ReadingProgress from '@/components/Blog/ReadingProgress';
 import ShareButton from '@/components/Blog/ShareButton';
 import { SchemaGraph } from '@/components/Schema';
 import PageWrapper from '@/components/Template/PageWrapper';
+import { readPostImageSizes } from '@/lib/imageSize';
 import { sharedOpenGraph, sharedTwitter } from '@/lib/metadata';
 import { getPostBySlug, getPostSlugs } from '@/lib/posts';
 import {
@@ -68,9 +69,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const url = `${SITE_URL}/blog/${post.slug}/`;
   const blogUrl = `${SITE_URL}/blog/`;
+  const imageSizes = readPostImageSizes(post.content);
 
   return (
-    <PageWrapper>
+    <PageWrapper mainClassName="page-main--blog">
       <SchemaGraph
         nodes={[
           blogPostingNode(post),
@@ -89,10 +91,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </time>
           <h1 className="post-title">{post.title}</h1>
           <p className="post-description">{post.description}</p>
-          <ShareButton title={post.title} url={url} className="post-share" />
+          <div className="post-header-actions">
+            <ShareButton title={post.title} url={url} className="post-share" />
+          </div>
         </header>
         <div className="prose">
-          <PostContent content={post.content} />
+          <PostContent content={post.content} imageSizes={imageSizes} />
         </div>
       </article>
     </PageWrapper>

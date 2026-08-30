@@ -3,6 +3,8 @@ export interface BlogItem {
   url: string;
   date: string;
   description: string;
+  image?: string;
+  imageAlt?: string;
 }
 
 // External articles can be added here when Huzaifa publishes them.

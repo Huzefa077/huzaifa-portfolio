@@ -30,7 +30,7 @@ const postsDirectory = path.join(process.cwd(), 'content/blog');
 /**
  * Drafts are visible while running `next dev` and never anywhere else.
  *
- * Every reader of a post — static params, lookup, metadata, RSS, sitemap, and
+ * Every reader of a post — static params, lookup, metadata, sitemap, and
  * the index — must go through this. Filtering in the list helpers alone is
  * what previously exported a full draft with `robots: index, follow`, because
  * `generateStaticParams` was reading filenames directly.
@@ -224,7 +224,7 @@ function readPublishedPosts(): Post[] {
  * Parsed posts, held for the life of the process.
  *
  * A static export reaches this from four independent entry points — the
- * sitemap, the feed, the blog index, and `generateStaticParams` — and then
+ * sitemap, the blog index, and `generateStaticParams` — and then
  * twice more per post route, once in `generateMetadata` and once in the page.
  * Uncached, each of those re-walked the directory and re-parsed every file.
  *

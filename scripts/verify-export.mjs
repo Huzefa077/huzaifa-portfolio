@@ -572,26 +572,6 @@ if (!existsSync(sitemapPath)) {
   }
 }
 
-const feedPath = join(OUT, 'feed.xml');
-if (!existsSync(feedPath)) {
-  fail('feed.xml', 'missing from export');
-} else {
-  const feed = readFileSync(feedPath, 'utf8');
-  const textLinks = [...feed.matchAll(/<link>\s*([^<]+?)\s*<\/link>/gi)].map(
-    (match) => match[1],
-  );
-  const guids = [...feed.matchAll(/<guid\b[^>]*>\s*([^<]+?)\s*<\/guid>/gi)].map(
-    (match) => match[1],
-  );
-  const atomLinks = tags(feed, 'atom:link')
-    .map((tag) => attribute(tag, 'href'))
-    .filter((href) => href !== undefined);
-
-  for (const url of [...textLinks, ...guids, ...atomLinks]) {
-    validateXmlUrl(url, 'feed.xml');
-  }
-}
-
 if (failures.length > 0) {
   console.error(`\nverify-export: ${failures.length} problem(s)\n`);
   for (const { page, message } of failures) {
@@ -602,5 +582,5 @@ if (failures.length > 0) {
 
 console.log(
   `verify-export: ${pages.length} pages OK ` +
-    '(drafts, robots, ids/fragments, canonicals, complete share metadata, local images, internal links, sitemap/RSS)',
+    '(drafts, robots, ids/fragments, canonicals, complete share metadata, local images, internal links, sitemap)',
 );

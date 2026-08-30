@@ -34,7 +34,7 @@ Read AGENTS.md and work on a topic branch. Do not commit, push, merge, or change
 account settings unless I explicitly authorize it.
 Manage the blog for this site as follows: [ADD, UPDATE, OR REMOVE CONTENT].
 Use content/blog/ for local posts and src/data/blog.ts for external
-links. Preserve draft isolation, RSS, the homepage blog section, metadata,
+links. Preserve draft isolation, the homepage blog section, metadata,
 and valid post slugs. Pair each frontmatter `image` with `imageAlt`, and give
 Markdown images descriptive alt text. Keep at least one published post unless I
 asked you to remove the blog completely. Run the full validation suite and
@@ -113,7 +113,6 @@ Identity data starts in shared files, but some text and links are hard-coded.
 | Portrait and its alt text                                      | `public/images/me.jpg`, `src/components/Template/ThemePortrait.tsx` |
 | Favicon files and web app name                                 | `public/images/favicon/`                                            |
 | Sitemap URL for crawlers                                       | `public/robots.txt`                                                 |
-| RSS title and description                                      | `app/feed.xml/route.ts`                                             |
 | Repository statistics and GitHub API URL                       | `src/components/Stats/Site.tsx`, `src/data/stats/site.ts`           |
 | Countries map                                                  | `src/data/stats/personal.tsx`                                       |
 
@@ -144,7 +143,7 @@ Blog entries come from two places:
 - External articles in `src/data/blog.ts`
 
 Both sources appear on `/blog/`. Dated entries can also appear on the
-homepage and in the RSS feed.
+homepage.
 
 Local posts are Markdown files. The filename becomes the URL slug, so
 `my-post.md` becomes `/blog/my-post/`. Valid filenames use lowercase letters
@@ -155,6 +154,8 @@ and numbers separated by single hyphens.
 title: 'Your Post Title'
 date: '2026-01-15'
 description: 'A short description for previews and search results.'
+image: '/images/blog/my-post.webp'
+imageAlt: 'A concise description of the card image.'
 ---
 
 Your content here.
@@ -164,6 +165,11 @@ The required fields are `title`, `date`, and `description`. `draft: true` shows
 a post during development without including it in the production export. An
 optional `image` must be a root-relative path under `public/` and must be paired
 with `imageAlt`.
+
+Keep owned blog images in `public/images/blog/`. Prefer compressed WebP or AVIF
+files over remote URLs so the static site owns its assets and does not depend on
+hotlinking or a third-party image host. Markdown images use the same paths, for
+example `![Descriptive alt text](/images/blog/diagram.webp)`.
 
 The production export requires at least one published post. It cannot build the
 dynamic post route when `generateStaticParams()` has no published slugs.
@@ -175,12 +181,12 @@ available by URL.
 Full removal requires a consumer search before any files are deleted:
 
 ```bash
-rg -n -i "blog|feed\\.xml|getBlogItems|getAllPosts" app src scripts
+rg -n -i "blog|getBlogItems|getAllPosts" app src scripts
 ```
 
-A complete removal touches the blog routes, feed, content loaders, homepage
-section, sitemap, schema, export verifier, styles, and tests. Run a production
-build after the refactor.
+A complete removal touches the blog routes, content loaders, homepage section,
+sitemap, schema, export verifier, and styles. Run a production build after the
+refactor.
 
 ### Visual identity
 

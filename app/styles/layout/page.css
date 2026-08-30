@@ -34,6 +34,10 @@
   max-width: var(--measure-wide);
 }
 
+.page-main--blog {
+  max-width: var(--measure-wide);
+}
+
 @media screen and (min-width: 736px) {
   .page-main {
     padding: 3rem 2rem;

@@ -78,7 +78,6 @@ Screenshots can be added to `docs/screenshots/` using the filenames below.
 
 - npm
 - Biome and Prettier
-- Vitest and Testing Library
 
 ## Technical Highlights
 
@@ -88,9 +87,9 @@ Screenshots can be added to `docs/screenshots/` using the filenames below.
 - Light and dark themes with saved user preference
 - Accessible navigation, keyboard states, and reduced-motion handling
 - Route-specific metadata, canonical URLs, Open Graph, and Twitter card data
-- Structured data, sitemap, and RSS feed generation
+- Structured data and sitemap generation
 - Static export suitable for GitHub Pages hosting
-- Automated linting, type checks, tests, builds, and export verification in CI
+- Automated production builds and export verification in CI
 - Email-based contact without a server-side form or database
 
 ## Running Locally
