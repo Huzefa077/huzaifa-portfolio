@@ -2,7 +2,7 @@
 title: 'How Live Streaming Actually Works'
 date: '2026-08-27'
 description: 'Live streaming basics: how codecs, protocols, and the tech behind your screen actually work.'
-image: '/images/blogs/live-stream-blog-cover.webp'
+image: '/images/blogs/how-video-streaming-works/live-stream-cover.webp'
 imageAlt: 'Illustration representing video streaming over the internet.'
 ---
 
@@ -24,6 +24,10 @@ A network protocol is that process for machines. It defines:
 - how quickly the sender should keep moving
 
 You already use protocols constantly. HTTP fetches web content. TCP prioritizes reliable delivery. UDP prioritizes speed. Live video needs rules that balance both—because a perfect replay arriving thirty seconds late is not very live.
+
+![TCP carefully confirms delivery while UDP keeps moving at full speed.](/images/blogs/how-video-streaming-works/tcp-udp-meme.png)
+
+That is the joke in one image: TCP checks that everything arrived; UDP sends it and keeps going. Streaming systems choose between those instincts depending on whether reliability or immediacy matters more.
 
 ## 2. Codec vs. Protocol
 
