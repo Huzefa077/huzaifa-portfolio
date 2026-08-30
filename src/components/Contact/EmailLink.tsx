@@ -6,8 +6,8 @@ import profile from '@/data/profile.json';
 import usePrefersReducedMotion from '@/hooks/usePrefersReducedMotion';
 
 // Animation timing constants
-const ANIMATION_TICK_MS = 50; // Tick length in milliseconds
-const HOLD_TICKS_AFTER_MESSAGE = 16; // Brief pause before the next message
+const ANIMATION_TICK_MS = 55; // Tick length in milliseconds
+const HOLD_TICKS_AFTER_MESSAGE = 35; // Brief pause before the next message
 
 /** The address the link always resolves to, whatever the animation shows. */
 const CONTACT_ADDRESS = profile.email;
@@ -50,8 +50,7 @@ interface AnimationState {
 
 type AnimationAction =
   | { type: 'TICK'; loopMessage: boolean; hold: number }
-  | { type: 'PAUSE' }
-  | { type: 'RESUME'; maxIdx: number };
+  | { type: 'PAUSE' };
 
 /**
  * The opening frame of a message.
@@ -98,9 +97,7 @@ function animationReducer(
           return startOf(0);
         }
 
-        // Completion is recorded in `idx`, not only in `isActive`. Leaving it
-        // on the last message meant RESUME's `idx < maxIdx` test passed, so a
-        // finished animation re-armed its interval on every mouse-out.
+        // Completion is recorded in `idx`, not only in `isActive`.
         return { ...state, idx: messages.length, isActive: false };
       }
 
@@ -108,11 +105,6 @@ function animationReducer(
     }
     case 'PAUSE':
       return { ...state, isActive: false };
-    case 'RESUME':
-      return {
-        ...state,
-        isActive: state.idx < action.maxIdx,
-      };
     default:
       return state;
   }
@@ -152,19 +144,8 @@ export default function EmailLink({ loopMessage = false }: EmailLinkProps) {
   // it is reduced motion, where the real address should simply stand.
   const displayMessage = reducedMotion ? messages[0] : state.message;
 
-  const handlePause = () => dispatch({ type: 'PAUSE' });
-  const handleResume = () => {
-    if (!reducedMotion) {
-      dispatch({ type: 'RESUME', maxIdx: messages.length });
-    }
-  };
-
   return (
-    <div
-      className="contact-email-container"
-      onMouseEnter={handlePause}
-      onMouseLeave={handleResume}
-    >
+    <div className="contact-email-container">
       {/* Always a real link to a real address.
           The animation cycles through joke aliases, three of which are not
           valid local-parts ("but not this :(  " among them). Those used to
@@ -172,12 +153,7 @@ export default function EmailLink({ loopMessage = false }: EmailLinkProps) {
           roughly a fifth of the cycle the contact page offered no way to
           reach anyone. The gag is now purely visual: the shown alias is
           decorative and the destination never changes. */}
-      <a
-        href={`mailto:${CONTACT_ADDRESS}`}
-        className="contact-email-link"
-        onFocus={handlePause}
-        onBlur={handleResume}
-      >
+      <a href={`mailto:${CONTACT_ADDRESS}`} className="contact-email-link">
         <span className="sr-only">Email {CONTACT_ADDRESS}</span>
         <span className="contact-email-message" aria-hidden="true">
           {displayMessage}
