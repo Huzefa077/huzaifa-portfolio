@@ -1,7 +1,5 @@
 export const aboutMarkdown = `# Intro
-
-I am a JavaScript full-stack developer working with TypeScript, React, Node.js, Express, PostgreSQL, Tailwind CSS, and MongoDB. My focus is backend and system design — not because frontend doesn't matter, but because depth in how systems are structured and how data moves is what I want to be good at.
-
+I'm a JavaScript Full Stack Developer focused on building practical applications that solve real problems and make everyday life easier. I work across Node.js, Express, PostgreSQL, and MongoDB on the backend, with React and Next.js on the frontend. I use AI tools as part of my workflow, but I make sure I can explain and rebuild every line myself.
 # My Journey
 
 I started programming in 2024, pulled in by the idea of controlling a machine with nothing but instructions. My first language was C, and one of my earliest projects was running simple animations in Turbo C++ — a small thing, but it's what got me hooked on web development.

@@ -28,11 +28,7 @@ export default function ResumePage() {
         <header className="resume-header">
           <h1 className="resume-title">Resume</h1>
           <p className="resume-summary">
-            Computer Engineering graduate with hands-on experience building and
-            deploying full-stack applications using React, Next.js, Node.js,
-            Express, MongoDB, and PostgreSQL. I enjoy writing clean,
-            maintainable code and building practical products that solve real
-            problems.
+           Computer Engineering graduate with hands-on experience building and deploying full-stack applications using Next.js, TypeScript, Node.js, Express, PostgreSQL, and MongoDB. I write code I can fully explain — including the parts AI helped me write.
           </p>
           <div className="resume-actions">
             <a

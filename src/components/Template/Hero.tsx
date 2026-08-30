@@ -14,13 +14,11 @@ export default function Hero() {
           </h1>
 
           <p className="hero-tagline">
-            I&apos;m a {profile.role} focused on building practical applications
-            that solve real problems and make everyday life easier. I work
-            across React, Next.js, Node.js, PostgreSQL, and MongoDB while
-            exploring AI-powered products and growing toward a career in data
-            analytics.
+            I&apos;m a {profile.role} focused on building practical applications that solve real
+            problems and make everyday life easier. I work across Node.js, Express, PostgreSQL, and
+            MongoDB on the backend, with React and Next.js on the frontend. I use AI tools as part
+            of my workflow, but I make sure I can explain and rebuild every line myself.
           </p>
-
           <div className="hero-cta">
             <Link href="/projects" className="button">
               View Projects
