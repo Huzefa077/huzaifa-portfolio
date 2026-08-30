@@ -1,11 +1,12 @@
 import { MetadataRoute } from 'next';
 
+import { getAllPosts } from '@/lib/posts';
 import { SITE_URL } from '@/lib/utils';
 
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
+  const pages: MetadataRoute.Sitemap = [
     {
       url: `${SITE_URL}/`,
       changeFrequency: 'monthly',
@@ -42,4 +43,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     },
   ];
+
+  const posts: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
+    url: `${SITE_URL}/blog/${post.slug}/`,
+    lastModified: post.date,
+    changeFrequency: 'yearly',
+    priority: 0.6,
+  }));
+
+  return [...pages, ...posts];
 }

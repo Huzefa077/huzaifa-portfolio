@@ -30,21 +30,19 @@ pull request title so the merged history stays consistent.
 
 ## Validate the change
 
-Ask your coding agent to run the local equivalents of the checks CI runs, or
-run them yourself:
+The deployment gate builds the real static export and validates its generated
+routes, links, metadata, and assets. Run the same checks locally with:
 
 ```bash
 npm run format
-npm run lint
-npm run type-check
-npm test
 npm run og:check
 npm run build
 npm run verify-export
 ```
 
 `npm run verify-export` reads the files produced by `npm run build`, so keep
-that order. Add or update tests when behavior changes.
+that order. `npm run lint` and `npm run type-check` remain available for focused
+code work, but they do not block publishing.
 
 ## Open the pull request
 

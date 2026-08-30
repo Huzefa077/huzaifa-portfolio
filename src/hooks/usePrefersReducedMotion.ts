@@ -13,7 +13,7 @@ export const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
  * hand-rolled `matchMedia` reads this replaced each did something slightly
  * different, and only one of them listened.
  *
- * `matchMedia` is optional-chained because jsdom does not implement it; a
+ * `matchMedia` is optional-chained for environments that do not expose it; a
  * missing preference is treated as "no preference".
  */
 export default function usePrefersReducedMotion(): boolean {

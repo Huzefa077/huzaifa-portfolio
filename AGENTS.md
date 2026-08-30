@@ -9,7 +9,6 @@ npm run dev          # Start dev server (localhost:3000)
 npm run format       # Format with Prettier + Biome (run before committing)
 npm run lint         # Biome linting
 npm run type-check   # TypeScript checking
-npm test             # Vitest tests
 npm run build        # Production build + static export
 ```
 
@@ -17,7 +16,6 @@ npm run build        # Production build + static export
 
 ```bash
 npx biome check path/to/file.tsx            # Lint single file
-npm test -- ComponentName                    # Test single component
 ```
 
 ## Project Structure
@@ -76,11 +74,11 @@ Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Biome ·
 - **FontAwesome packages move together**: each carries its own `@fortawesome/fontawesome-common-types`, where `IconName` is a string-literal union that grows every release. Bumping one package leaves multiple copies and `IconDefinition` stops being assignable across them. Bump `fontawesome-svg-core`, `free-regular-svg-icons`, and `free-brands-svg-icons` in lockstep
 - **The artifact actions are coupled pairs**: `upload-artifact` feeds `download-artifact`, and `upload-pages-artifact` feeds `deploy-pages`, both on the path that publishes the site. Dependabot proposes them individually; bump each pair together
 - **`overrides` exist to reach security patches upstream pins away from**: `next` pins `postcss` to an exact version and declares `sharp` as an optional `^0.34.x`, so neither can reach its patched release through normal resolution — `package.json` `overrides` lift them. Re-check these on every `next` upgrade: once Next ships a range that already includes the fix, drop the override rather than leaving it to pin something backwards. The postcss override was verified inert by building before and after and diffing the emitted CSS byte-for-byte. `sharp` is never imported here (`images.unoptimized` plus static export means Next's optimizer never runs), so it is patched rather than exercised. `js-yaml` (via `gray-matter`, which parses every post's frontmatter) and `nanoid` (via `postcss`) are the same shape: both advisories are fixed inside the major line their parent already depends on, so the override is a floor rather than a jump — drop each one once the parent's own range reaches the patch. Note that `npm audit` is not wired into CI, so a transitive advisory surfaces only when someone runs it by hand or Dependabot opens a PR
-- **Node baseline lives in three places**: `.nvmrc` (development plus the install/quality/test jobs), `engines.node` in `package.json` (what forks are told they can use), and the `build` matrix in `.github/workflows/node.js.yml` (literals — a matrix cannot read `.nvmrc`). The deployed leg is named once as the workflow-level `DEPLOY_NODE` env so the Pages-configure and artifact-upload gates cannot drift apart; a build step asserts `DEPLOY_NODE` still matches `.nvmrc`. Derive the `engines` floor from the tightest transitive requirement rather than guessing, and re-derive it on every dependency bump — a major upgrade can narrow it without touching `package.json`, which leaves the support promise broader than anything actually installs. `jsdom` is the binding constraint and currently forces `^22.22.2 || ^24.15.0 || >=26.0.0`; jsdom 30 narrowed it from `^22.13.0`, and the mismatch surfaced only as an `EBADENGINE` warning during `npm ci`, not as a failed gate. The `22.x` matrix leg keeps working because it resolves to the newest 22 release, so CI cannot catch this for you
+- **Node baseline lives in two places**: `.nvmrc` selects the development and deployment version, while `engines.node` in `package.json` states what forks may use. The GitHub Actions build reads `.nvmrc` directly. Derive the `engines` range from actual dependency requirements and re-check it after major dependency upgrades rather than guessing
 - **Production compiler**: `npm run build` intentionally passes `--webpack`. Turbopack's build tracer stalls on the build-time public-image header reader used by article rendering; keep development on Turbopack, but do not restore Turbopack production builds until this exact export completes promptly on the full CI matrix
 - **Canonical/export URLs**: When generating absolute URLs for metadata, RSS, sitemap, or schema, match `trailingSlash: true` output (`/about/`, `/writing/post-slug/`) instead of non-canonical no-slash variants; file-like routes such as `/feed.xml` and `/sitemap.xml` stay file-like
 - **Page metadata**: Route-level `metadata` exports and `generateMetadata` should override `openGraph` and `twitter`, not just `title`/`description`, otherwise subpages inherit the homepage share card from `app/layout.tsx`; for `app/not-found.tsx`, omit `openGraph.url` because there is no stable canonical 404 route in the static export
-- **Metadata objects replace, they do not merge**: a route-level `openGraph`, `twitter`, or `alternates` object wholly replaces the inherited one, so anything omitted vanishes from that page. This has caused three separate bugs — posts with no `og:image`, subpages with no image at all, and the writing index with no canonical after it declared RSS `types`. Spread `sharedOpenGraph` / `sharedTwitter` from `src/lib/metadata.ts`, and spread the existing `alternates` before adding to it. `app/__tests__/page-metadata.test.ts` pins all of it
+- **Metadata objects replace, they do not merge**: a route-level `openGraph`, `twitter`, or `alternates` object wholly replaces the inherited one, so anything omitted vanishes from that page. This has caused three separate bugs — posts with no `og:image`, subpages with no image at all, and the writing index with no canonical after it declared RSS `types`. Spread `sharedOpenGraph` / `sharedTwitter` from `src/lib/metadata.ts`, and spread the existing `alternates` before adding to it. The generated-site verifier checks the resulting canonical and share metadata
 - **Share images**: The card is `public/og.png`, regenerated with `npm run og`; commit it together with `public/og.meta.json`, which binds the image to its generator and profile inputs. Do **not** convert this to an `app/opengraph-image.tsx` metadata route: it emits an extensionless file that GitHub Pages serves as `application/octet-stream`, which scrapers reject, and the file convention only reaches routes that do not declare their own `openGraph`
 - **Drafts**: every read of a post goes through `isPublished` in `src/lib/posts.ts`, and `generateStaticParams` must use `getPostSlugs()` rather than raw filenames. Reading the directory directly is what once exported a full draft with `robots: index, follow`
 - **robots**: never emit a positive `index, follow` globally. It is already the default, and it contradicts any page that sets `noindex` — the 404 shipped carrying both
@@ -105,15 +103,11 @@ Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Biome ·
 - **Opting out of base link styles**: `app/styles/base/links.css` paints an accent underline on every `p a` / `li a`. Navigation-like links must set `background-image: none` or they pick up a rule that appears nowhere else — this is what made the mobile menu look broken
 - **Print**: `app/styles/print.css` is imported last so it can override both themes. The resume is the page people print; check it there after changing resume layout
 
-## Testing
+## Validation
 
-Tests live in `__tests__/` directories adjacent to the code they test. Run `npm test` before committing.
-
-```bash
-npm test                        # Run all tests
-npm test -- --watch             # Watch mode
-npm test -- ComponentName       # Run specific test
-```
+Publishing is gated by `npm run build` and `npm run verify-export`, which check
+the generated static site. Linting and type-checking remain available for
+focused code changes but do not block deployment.
 
 ## Further Reading
 

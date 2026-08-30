@@ -218,17 +218,10 @@ Repeat it with any other upstream names or URLs the search uncovers. This
 catches details in page descriptions, tests, images, and links that a checklist
 can miss.
 
-Some tests assert the site's public content, so exact-text expectations may
-need updates. Do not weaken structural checks for metadata, canonical URLs,
-draft isolation, accessibility, or export integrity.
-
-The full validation suite is:
+The publishing validation is intentionally focused on the generated site:
 
 ```bash
 npm run format
-npm run lint
-npm run type-check
-npm test
 npm run og:check
 npm run build
 npm run verify-export

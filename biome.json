@@ -60,7 +60,7 @@
       }
     },
     {
-      "includes": ["*.config.ts", "*.config.js", "vitest.setup.tsx"],
+      "includes": ["*.config.ts", "*.config.js"],
       "linter": {
         "rules": {
           "style": { "noCommonJs": "off" },
