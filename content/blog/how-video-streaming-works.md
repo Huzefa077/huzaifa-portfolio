@@ -27,7 +27,9 @@ You already use protocols constantly. HTTP fetches web content. TCP prioritizes 
 
 ![TCP carefully confirms delivery while UDP keeps moving at full speed.](/images/blogs/how-video-streaming-works/tcp-udp-meme.png)
 
-That is the joke in one image: TCP checks that everything arrived; UDP sends it and keeps going. Streaming systems choose between those instincts depending on whether reliability or immediacy matters more.
+TCP is a Certified Letter: Every single word is tracked. If a page goes missing, the post office stops everything and resends it until the whole letter arrives perfectly—even if it takes longer. (Best for bank transfers or file downloads)
+
+UDP is a Live Walkie-Talkie: You press the button and talk. If static cuts out half a second of your voice, you don’t pause the conversation to replay the lost syllable—you just keep talking in real time. (Best for live calls, gaming, and instant sports feeds)
 
 ## 2. Codec vs. Protocol
 
@@ -44,7 +46,7 @@ Neither works alone. A tiny compressed file that never gets delivered is useless
 
 ## 3. Meet the Codecs
 
-A codec—short for coder/decoder—compresses video before transmission and reconstructs it on your device.
+A codec—short for encoder/decoder—compresses video before transmission and reconstructs it on your device.
 
 Video is repetitive. In a wide cricket shot, the pitch and most of the crowd barely change between frames. A codec stores the important changes instead of describing every pixel from scratch.
 
