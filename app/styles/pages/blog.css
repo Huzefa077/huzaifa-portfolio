@@ -307,8 +307,8 @@
 }
 
 .post-page .prose {
-  max-width: 48rem;
-  margin-inline: auto;
+  max-width: none;
+  margin-inline: 0;
 }
 
 /* Prose styling for markdown content */
