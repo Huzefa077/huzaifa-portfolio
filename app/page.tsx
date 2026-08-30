@@ -1,18 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
-import ShareButton from '@/components/Blog/ShareButton';
+import BlogCard from '@/components/Blog/BlogCard';
 import { SchemaGraph } from '@/components/Schema';
 import Hero from '@/components/Template/Hero';
 import PageWrapper from '@/components/Template/PageWrapper';
 import { getAllPosts } from '@/lib/posts';
 import { HOME_URL, profilePageNode } from '@/lib/schema';
-import {
-  AUTHOR_NAME,
-  formatDate,
-  SITE_DESCRIPTION,
-  SITE_URL,
-} from '@/lib/utils';
+import { AUTHOR_NAME, SITE_DESCRIPTION, SITE_URL } from '@/lib/utils';
 
 export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
@@ -49,26 +44,23 @@ export default function HomePage() {
             </p>
           </div>
         ) : (
-          <div className="home-writing-list">
+          <div className="writing-list">
             {posts.map((post) => {
               const href = `/blog/${post.slug}/`;
-              const url = `${SITE_URL}${href}`;
 
               return (
-                <article key={post.slug} className="home-writing-item">
-                  <Link href={href} className="home-writing-link">
-                    <time className="home-writing-meta" dateTime={post.date}>
-                      {formatDate(post.date)}
-                    </time>
-                    <h3>{post.title}</h3>
-                    <p>{post.description}</p>
-                  </Link>
-                  <ShareButton
-                    title={post.title}
-                    url={url}
-                    className="home-writing-share"
-                  />
-                </article>
+                <BlogCard
+                  key={post.slug}
+                  entry={{
+                    title: post.title,
+                    date: post.date,
+                    description: post.description,
+                    href,
+                    external: false,
+                    image: post.image,
+                    imageAlt: post.imageAlt,
+                  }}
+                />
               );
             })}
           </div>
