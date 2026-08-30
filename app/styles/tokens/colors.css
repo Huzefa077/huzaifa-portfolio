@@ -43,6 +43,10 @@
   --color-signal: #9a5600;
   --color-signal-mark: #e8930c;
 
+  /* Reading position is a distinct editorial indicator, not a live-data
+     signal, so it gets its own dark-red token. */
+  --color-reading-progress: #7f1d1d;
+
   /* ===================
      BORDER COLORS
      Hairlines do the structural work here, so they are
