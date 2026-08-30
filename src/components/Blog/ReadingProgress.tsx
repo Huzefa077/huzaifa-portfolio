@@ -41,7 +41,7 @@ export default function ReadingProgress() {
 
   useEffect(() => {
     const indicator = indicatorRef.current;
-    const article = indicator?.closest<HTMLElement>('.post-page');
+    const article = document.querySelector<HTMLElement>('.post-page');
     const shouldReduceMotion =
       prefersReducedMotion ||
       Boolean(window.matchMedia?.(REDUCED_MOTION_QUERY).matches);

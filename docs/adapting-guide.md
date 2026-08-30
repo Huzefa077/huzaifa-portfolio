@@ -166,10 +166,12 @@ a post during development without including it in the production export. An
 optional `image` must be a root-relative path under `public/` and must be paired
 with `imageAlt`.
 
-Keep owned blog images in `public/images/blog/`. Prefer compressed WebP or AVIF
+Keep owned blog images in `public/images/blogs/`. Prefer compressed WebP or AVIF
 files over remote URLs so the static site owns its assets and does not depend on
 hotlinking or a third-party image host. Markdown images use the same paths, for
-example `![Descriptive alt text](/images/blog/diagram.webp)`.
+example
+`![Descriptive alt text](/images/blogs/my-post/diagram.webp)`. Giving each post
+its own image folder keeps inline images organized as the blog grows.
 
 The production export requires at least one published post. It cannot build the
 dynamic post route when `generateStaticParams()` has no published slugs.

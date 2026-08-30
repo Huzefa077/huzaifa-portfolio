@@ -37,6 +37,16 @@
   }
 }
 
+@media screen and (min-width: 736px) and (max-width: 960px) {
+  .nav-links {
+    gap: 1rem;
+  }
+
+  .nav-link {
+    letter-spacing: var(--tracking-wide);
+  }
+}
+
 .nav-link {
   position: relative;
   padding: 0.5rem 0;

@@ -234,10 +234,10 @@
   top: var(--header-height);
   right: 0;
   left: 0;
-  height: var(--rule);
+  height: var(--rule-strong);
   overflow: hidden;
   pointer-events: none;
-  background: var(--color-border);
+  background: transparent;
 }
 
 .reading-progress-indicator {
@@ -307,8 +307,8 @@
 }
 
 .post-page .prose {
-  max-width: none;
-  margin-inline: 0;
+  max-width: var(--measure-read);
+  margin-inline: auto;
 }
 
 /* Prose styling for markdown content */
@@ -393,6 +393,29 @@
 
 .prose li {
   margin: 0.5rem 0;
+}
+
+.prose table {
+  display: block;
+  width: 100%;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: var(--text-base);
+}
+
+.prose th,
+.prose td {
+  padding: 0.75rem;
+  border-bottom: var(--rule) solid var(--color-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  font-family: var(--font-mono);
+  font-size: var(--text-ui);
+  color: var(--color-fg-bold);
 }
 
 .prose ul > li {

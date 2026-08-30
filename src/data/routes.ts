@@ -1,5 +1,3 @@
-import { AUTHOR_NAME } from '@/lib/utils';
-
 export interface Route {
   label: string;
   path: string;
@@ -11,7 +9,7 @@ export interface Route {
 const routes: Route[] = [
   {
     index: true,
-    label: AUTHOR_NAME,
+    label: 'Home',
     path: '/',
   },
   {

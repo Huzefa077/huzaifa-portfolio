@@ -316,29 +316,31 @@
 }
 
 .contact-email-container {
-  display: block;
+  display: flex;
+  justify-content: center;
   margin-bottom: 0.75rem;
 }
 
-/* The address is the page's one instruction, so it is set as a
-   readout in mono rather than dressed up as a tinted button. */
+/* The address is the page's primary action. A fixed panel keeps the animated
+   copy from changing the control's width while making the click target clear. */
 .contact-email-link {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 100%;
-  padding: 0.875rem 0;
+  width: min(100%, 46rem);
+  min-height: 8rem;
+  padding: 1rem 1.5rem;
   font-family: var(--font-mono);
   font-size: clamp(var(--text-xl), 4vw, var(--text-3xl));
   font-weight: var(--font-weight-medium);
   letter-spacing: var(--tracking-tight);
   line-height: var(--leading-tight);
   color: var(--color-fg-bold);
-  background: transparent;
+  background: var(--color-surface-subtle);
   background-image: none;
-  border-radius: 0;
-  border-bottom: var(--rule-strong) solid var(--color-accent);
+  border: var(--rule) solid var(--color-control-border);
+  border-radius: var(--radius-sm);
   text-decoration: none;
   /* The animated alias runs long — "you-can-email-me-at-literally-anything!"
      pushed 438px of content into a 320px viewport. It has to be allowed to
@@ -346,13 +348,30 @@
   overflow-wrap: anywhere;
   transition:
     color var(--duration-fast) var(--ease-out),
-    border-color var(--duration-fast) var(--ease-out);
+    border-color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
 }
 
 .contact-email-link:hover {
-  background: transparent;
-  color: var(--color-accent);
-  border-bottom-color: var(--color-accent-hover);
+  background: var(--color-accent-fill);
+  color: var(--color-on-accent);
+  border-color: var(--color-accent-fill);
+  transform: translateY(-2px);
+}
+
+.contact-email-link:hover .contact-email-message,
+.contact-email-link:hover .contact-email-address {
+  color: var(--color-on-accent);
+}
+
+.contact-email-link:active {
+  transform: translateY(0);
+}
+
+.contact-email-link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
 }
 
 /* Flex items default to min-width:auto and refuse to shrink below their
@@ -456,7 +475,8 @@
   }
 
   .contact-email-link {
-    padding: 0.625rem 0;
+    min-height: 7rem;
+    padding: 0.875rem 1rem;
   }
 }
 

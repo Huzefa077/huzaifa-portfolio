@@ -7,7 +7,7 @@ import usePrefersReducedMotion from '@/hooks/usePrefersReducedMotion';
 
 // Animation timing constants
 const ANIMATION_TICK_MS = 50; // Tick length in milliseconds
-const HOLD_TICKS_AFTER_MESSAGE = 50; // Ticks to wait after message completes
+const HOLD_TICKS_AFTER_MESSAGE = 16; // Brief pause before the next message
 
 /** The address the link always resolves to, whatever the animation shows. */
 const CONTACT_ADDRESS = profile.email;

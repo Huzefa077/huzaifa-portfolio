@@ -21,7 +21,7 @@ export default function Navigation() {
 
       <nav className="nav-links" aria-label="Primary">
         {routes
-          .filter((l) => !l.index && l.primary !== false)
+          .filter((l) => l.primary !== false)
           .map((l) => {
             const active = isActiveRoute(pathname, l.path);
 
