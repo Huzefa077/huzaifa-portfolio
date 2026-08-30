@@ -36,8 +36,11 @@
   top: var(--header-height);
   z-index: var(--z-sticky);
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
+  flex-wrap: nowrap;
+  gap: 1.5rem;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
   margin: var(--spacing-10) 0 var(--spacing-6);
   padding: 0.75rem 0;
   border-top: var(--rule) solid var(--color-border);
@@ -463,12 +466,9 @@
 @media (max-width: 735px) {
   .about-section-nav {
     top: var(--header-height-mobile);
-    flex-wrap: nowrap;
-    overflow-x: auto;
     margin: var(--spacing-6) 0 var(--spacing-5);
     padding: var(--spacing-3) 0;
     border-radius: 0;
-    scrollbar-width: thin;
   }
 
   .about-section h2 {
