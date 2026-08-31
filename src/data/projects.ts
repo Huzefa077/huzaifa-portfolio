@@ -5,11 +5,8 @@ export interface Project {
   githubUrl?: string;
   image?: string;
   imageAlt?: string;
-  imageNote?: string;
   date?: string;
-  status?: string;
   desc: string;
-  features?: string[];
   tech?: string[];
 }
 
@@ -38,16 +35,7 @@ const data: Project[] = [
     githubUrl: 'https://github.com/Huzefa077/ocula-frontend',
     image: '/images/projects/ocula-image.png',
     imageAlt: 'Ocula face analysis results displayed beside an uploaded image',
-    imageNote:
-      'Predictions are model estimates. Accuracy depends on image quality, lighting, face angle, and browser camera conditions.',
-    status: 'Active Development',
-    desc: 'A full-stack browser vision app that detects faces in uploaded images, estimates age, gender, and expression, lets users selectively blur identities, and includes an experimental webcam-based gaze tracker with calibration.',
-    features: [
-      'Multi-face detection with age, gender, and expression estimates',
-      'Selective privacy blur with anonymized image export',
-      'Webcam gaze calibration with randomized training points',
-      'Guest mode, Google sign-in, email verification, and scan history',
-    ],
+    desc: 'A full-stack browser vision app for facial attribute analysis, selective identity blurring, and experimental webcam gaze calibration. It supports guest and authenticated workflows with saved scan history.',
     tech: [
       'React',
       'Node.js',
