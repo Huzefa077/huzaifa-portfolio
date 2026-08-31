@@ -39,6 +39,8 @@ function ProjectActions({
         <a
           href={githubUrl}
           className="project-card-action"
+          target="_blank"
+          rel="noopener noreferrer"
           tabIndex={interactive ? 0 : -1}
         >
           GitHub <span aria-hidden="true">↗</span>
@@ -97,7 +99,7 @@ export default function Cell({ data }: CellProps) {
                 alt={imageAlt ?? `${title} project screenshot`}
                 width={PROJECT_IMAGE.width}
                 height={PROJECT_IMAGE.height}
-                sizes="(max-width: 600px) 100vw, 50vw"
+                sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
               />
             </div>
           )}

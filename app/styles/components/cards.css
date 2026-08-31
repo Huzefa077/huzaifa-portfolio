@@ -59,6 +59,18 @@
   }
 }
 
+@media screen and (min-width: 900px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 .project-card {
   perspective: 90rem;
   transition: transform var(--duration-fast) var(--ease-out);
