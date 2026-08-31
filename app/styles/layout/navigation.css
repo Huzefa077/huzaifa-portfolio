@@ -26,6 +26,7 @@
 /* Nav labels are instrument annotation, not prose:
    mono, uppercase, wide-tracked, and small. */
 .nav-links {
+  position: relative;
   display: none;
   gap: 1.75rem;
   align-items: center;
@@ -82,11 +83,6 @@
   color: var(--color-fg-bold);
 }
 
-.nav-link:hover::after,
-.nav-link:focus-visible::after {
-  transform: scaleX(1);
-}
-
 .nav-link:focus-visible {
   color: var(--color-fg-bold);
   outline: 2px solid var(--color-accent);
@@ -99,6 +95,22 @@
 
 .nav-link.active::after {
   transform: scaleX(1);
+}
+
+.nav-hover-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: var(--rule-strong);
+  background: var(--color-accent);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(0);
+  transition:
+    width var(--duration-normal) var(--ease-out),
+    transform var(--duration-normal) var(--ease-out),
+    opacity var(--duration-fast) var(--ease-out);
 }
 
 .nav-actions {
