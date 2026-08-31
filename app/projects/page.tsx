@@ -5,12 +5,7 @@ import { SchemaGraph } from '@/components/Schema';
 import PageWrapper from '@/components/Template/PageWrapper';
 import data from '@/data/projects';
 import { createPageMetadata } from '@/lib/metadata';
-import {
-  breadcrumbNode,
-  collectionPageNode,
-  HOME_URL,
-  SITE_URL,
-} from '@/lib/schema';
+import { breadcrumbNode, collectionPageNode, HOME_URL, SITE_URL } from '@/lib/schema';
 import { AUTHOR_NAME } from '@/lib/utils';
 
 const PROJECTS_URL = `${SITE_URL}/projects/`;
@@ -25,7 +20,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function ProjectsPage() {
   return (
-    <PageWrapper>
+    <PageWrapper mainClassName="page-main--projects">
       <SchemaGraph
         nodes={[
           collectionPageNode({

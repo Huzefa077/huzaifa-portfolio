@@ -38,6 +38,12 @@
   max-width: var(--measure-wide);
 }
 
+/* Three project cards retain roughly their former two-column width when the
+   viewport has room; the shared page padding still constrains smaller screens. */
+.page-main--projects {
+  max-width: 86rem;
+}
+
 @media screen and (min-width: 736px) {
   .page-main {
     padding: 3rem 2rem;

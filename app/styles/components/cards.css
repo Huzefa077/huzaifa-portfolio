@@ -49,6 +49,7 @@
 
 .projects-grid {
   display: grid;
+  align-items: start;
   gap: 1.75rem;
   grid-template-columns: 1fr;
 }
