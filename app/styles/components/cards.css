@@ -99,6 +99,17 @@
     transform var(--duration-normal) var(--ease-out);
 }
 
+.project-card-image-note {
+  margin: 0;
+  padding: 0.625rem 1rem;
+  border-top: var(--rule) solid var(--color-border);
+  border-bottom: var(--rule) solid var(--color-border);
+  color: var(--color-fg-light);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  line-height: var(--leading-snug);
+}
+
 .project-card:hover .project-card-image img,
 .project-card:focus-within .project-card-image img {
   filter: grayscale(0) contrast(1);
@@ -125,6 +136,17 @@
   margin-bottom: 0.875rem;
 }
 
+.project-card-status {
+  display: block;
+  margin-bottom: 0.625rem;
+  color: var(--color-signal);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
 .project-card-title {
   font-family: var(--font-display);
   font-size: var(--text-lg);
@@ -147,6 +169,22 @@
   color: var(--color-fg);
   margin-bottom: 1.25rem;
   line-height: var(--leading-normal);
+}
+
+.project-card-features {
+  margin: 0 0 1.25rem;
+  padding-left: 1.1rem;
+  color: var(--color-fg-light);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.project-card-features li + li {
+  margin-top: 0.45rem;
+}
+
+.project-card-features li::marker {
+  color: var(--color-accent);
 }
 
 .project-card-tech {

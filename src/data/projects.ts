@@ -5,8 +5,11 @@ export interface Project {
   githubUrl?: string;
   image?: string;
   imageAlt?: string;
+  imageNote?: string;
   date?: string;
+  status?: string;
   desc: string;
+  features?: string[];
   tech?: string[];
 }
 
@@ -29,14 +32,30 @@ const data: Project[] = [
     ],
   },
   {
-    title: 'Face Detection & Analysis\n (Under Maintainence)',
-    subtitle: 'AI-powered facial attribute analysis',
+    title: 'Ocula',
+    subtitle: 'Face Detection, Privacy Blur & Gaze Tracking',
     liveUrl: 'https://ocula-frontend.vercel.app/',
     githubUrl: 'https://github.com/Huzefa077/ocula-frontend',
     image: '/images/projects/ocula-image.png',
-    imageAlt: 'Human Face with analysis report',
-    desc: 'A deployed full-stack application that detects faces from image URLs and predicts age, gender, and facial expression, with clear loading and error states.',
-    tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'face-api.js'],
+    imageAlt: 'Ocula face analysis results displayed beside an uploaded image',
+    imageNote:
+      'Predictions are model estimates. Accuracy depends on image quality, lighting, face angle, and browser camera conditions.',
+    status: 'Active Development',
+    desc: 'A full-stack browser vision app that detects faces in uploaded images, estimates age, gender, and expression, lets users selectively blur identities, and includes an experimental webcam-based gaze tracker with calibration.',
+    features: [
+      'Multi-face detection with age, gender, and expression estimates',
+      'Selective privacy blur with anonymized image export',
+      'Webcam gaze calibration with randomized training points',
+      'Guest mode, Google sign-in, email verification, and scan history',
+    ],
+    tech: [
+      'React',
+      'Node.js',
+      'Express',
+      'PostgreSQL',
+      'face-api.js',
+      'WebGazer.js',
+    ],
   },
   {
     title: 'NutriWise \n(Under Maintainence)',
