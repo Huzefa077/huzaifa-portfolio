@@ -53,11 +53,14 @@ function TechTags({ tech }: { tech?: string[] }) {
 
   return (
     <div className="project-card-tech" aria-label="Technologies used">
-      {tech.map((technology) => (
-        <span key={technology} className="tech-tag">
-          {technology}
-        </span>
-      ))}
+      <span className="project-card-tech-label">Tech stack</span>
+      <div className="project-card-tech-list">
+        {tech.map((technology) => (
+          <span key={technology} className="tech-tag">
+            {technology}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
@@ -104,7 +107,6 @@ export default function Cell({ data }: CellProps) {
               <h3 className="project-card-title">{title}</h3>
               {subtitle && <p className="project-card-subtitle">{subtitle}</p>}
             </header>
-            <TechTags tech={tech} />
             <footer className="project-card-footer">
               <ProjectActions
                 liveUrl={liveUrl}
