@@ -66,20 +66,19 @@
   }
 }
 
-@media screen and (min-width: 900px) {
-  .projects-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
 .project-card {
+  position: relative;
+  z-index: 0;
   perspective: 90rem;
-  transition: transform var(--duration-fast) var(--ease-out);
+  transition:
+    transform var(--duration-normal) var(--ease-out),
+    z-index 0s;
 }
 
 .project-card:hover,
 .project-card:focus-within {
-  transform: translateY(-2px);
+  z-index: 2;
+  transform: translateY(-2px) scale(1.03);
 }
 
 .project-card-flipper {
@@ -93,6 +92,7 @@
 }
 
 .project-card-side {
+  position: relative;
   grid-area: 1 / 1;
   display: flex;
   min-width: 0;
@@ -101,12 +101,17 @@
   border: var(--rule) solid var(--color-border);
   background: var(--color-bg);
   backface-visibility: hidden;
-  transition: border-color var(--duration-fast) var(--ease-out);
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out);
 }
 
 .project-card:hover .project-card-side,
 .project-card:focus-within .project-card-side {
-  border-color: var(--color-fg-bold);
+  border-color: var(--color-accent);
+  background-color: color-mix(in srgb, var(--color-bg) 92%, var(--color-accent));
+  box-shadow: 0 0 1.25rem var(--color-accent-light);
 }
 
 .project-card-back {
@@ -129,15 +134,12 @@
   object-fit: cover;
   object-position: center 20%;
   filter: grayscale(1) contrast(1.05);
-  transition:
-    filter var(--duration-normal) var(--ease-out),
-    transform var(--duration-normal) var(--ease-out);
+  transition: filter var(--duration-normal) var(--ease-out);
 }
 
 .project-card:hover .project-card-image img,
 .project-card:focus-within .project-card-image img {
   filter: grayscale(0) contrast(1);
-  transform: scale(1.045);
 }
 
 /* Without a pointer there is no hover to reveal the developed image, so
@@ -166,6 +168,28 @@
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--tracking-tight);
   margin-bottom: 0.4rem;
+}
+
+.project-card-site-link {
+  color: inherit;
+  text-decoration: none;
+  background-image: none;
+}
+
+.project-card-site-link::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+}
+
+.project-card-site-link:focus-visible {
+  outline: none;
+}
+
+.project-card-site-link:focus-visible::after {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -4px;
 }
 
 .project-card-subtitle {
@@ -227,6 +251,8 @@
 }
 
 .project-card-actions {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-wrap: wrap;
   gap: 0.625rem;
@@ -252,7 +278,21 @@
     background-color var(--duration-fast) var(--ease-out);
 }
 
+.project-card-action--primary {
+  border-color: var(--color-accent-fill);
+  background: var(--color-accent-fill);
+  color: var(--color-on-accent);
+}
+
+.project-card-action--secondary {
+  border-color: var(--color-accent);
+  background: var(--color-bg);
+  color: var(--color-accent);
+}
+
 .project-card-flip {
+  position: relative;
+  z-index: 2;
   appearance: none;
   display: flex;
   align-self: stretch;
@@ -260,10 +300,9 @@
   justify-content: space-between;
   margin-top: 1.25rem;
   min-height: 44px;
-  padding: 0.65rem 0;
-  border: 0;
-  border-top: var(--rule) solid var(--color-border);
-  background: transparent;
+  padding: 0.7rem 0.85rem;
+  border: var(--rule) solid var(--color-accent);
+  background: var(--color-surface-subtle);
   color: var(--color-accent);
   cursor: pointer;
   font-family: var(--font-mono);
@@ -275,6 +314,8 @@
 
 .project-card-flip:hover,
 .project-card-flip:focus-visible {
+  border-color: var(--color-accent-hover);
+  background: var(--color-accent-light);
   color: var(--color-accent-hover);
 }
 
@@ -286,8 +327,19 @@
 .project-card-action:hover,
 .project-card-action:focus-visible {
   border-color: var(--color-accent);
-  background: var(--color-surface-subtle);
-  color: var(--color-accent);
+}
+
+.project-card-action--primary:hover,
+.project-card-action--primary:focus-visible {
+  border-color: var(--color-accent-fill-hover);
+  background: var(--color-accent-fill-hover);
+  color: var(--color-on-accent);
+}
+
+.project-card-action--secondary:hover,
+.project-card-action--secondary:focus-visible {
+  background: var(--color-accent-light);
+  color: var(--color-accent-hover);
 }
 
 .project-card-date {

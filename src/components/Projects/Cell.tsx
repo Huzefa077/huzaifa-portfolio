@@ -27,18 +27,18 @@ function ProjectActions({
       {liveUrl && (
         <a
           href={liveUrl}
-          className="project-card-action"
+          className="project-card-action project-card-action--primary"
           target="_blank"
           rel="noopener noreferrer"
           tabIndex={interactive ? 0 : -1}
         >
-          Live demo <span aria-hidden="true">↗</span>
+          Visit site <span aria-hidden="true">↗</span>
         </a>
       )}
       {githubUrl && (
         <a
           href={githubUrl}
-          className="project-card-action"
+          className="project-card-action project-card-action--secondary"
           target="_blank"
           rel="noopener noreferrer"
           tabIndex={interactive ? 0 : -1}
@@ -106,7 +106,22 @@ export default function Cell({ data }: CellProps) {
 
           <div className="project-card-content">
             <header className="project-card-header">
-              <h3 className="project-card-title">{title}</h3>
+              <h3 className="project-card-title">
+                {liveUrl ? (
+                  <a
+                    href={liveUrl}
+                    className="project-card-site-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    tabIndex={flipped ? -1 : 0}
+                    aria-label={`Visit ${title} site`}
+                  >
+                    {title}
+                  </a>
+                ) : (
+                  title
+                )}
+              </h3>
               {subtitle && <p className="project-card-subtitle">{subtitle}</p>}
             </header>
             <footer className="project-card-footer">
@@ -135,7 +150,22 @@ export default function Cell({ data }: CellProps) {
         >
           <div className="project-card-content">
             <header className="project-card-header">
-              <h3 className="project-card-title">{title}</h3>
+              <h3 className="project-card-title">
+                {liveUrl ? (
+                  <a
+                    href={liveUrl}
+                    className="project-card-site-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    tabIndex={flipped ? 0 : -1}
+                    aria-label={`Visit ${title} site`}
+                  >
+                    {title}
+                  </a>
+                ) : (
+                  title
+                )}
+              </h3>
               {subtitle && <p className="project-card-subtitle">{subtitle}</p>}
             </header>
             <p className="project-card-desc">{desc}</p>
