@@ -2,7 +2,7 @@
 
 import dayjs from 'dayjs';
 import Image from 'next/image';
-import { type MouseEvent, useState } from 'react';
+import { useState } from 'react';
 
 import type { Project } from '@/data/projects';
 import { PROJECT_IMAGE } from '@/lib/utils';
@@ -83,27 +83,14 @@ export default function Cell({ data }: CellProps) {
 
   const year = date ? dayjs(date).format('YYYY') : null;
 
-  const openSiteFromCard = (event: MouseEvent<HTMLElement>) => {
-    if (
-      !liveUrl ||
-      !(event.target instanceof Element) ||
-      event.target.closest('a, button')
-    ) {
-      return;
-    }
-
-    window.open(liveUrl, '_blank', 'noopener,noreferrer');
-  };
-
   return (
     <article className="project-card">
       <div
         className={`project-card-flipper ${flipped ? 'project-card-flipper--flipped' : ''}`}
       >
         <section
-          className={`project-card-side project-card-front ${liveUrl ? 'project-card-side--linked' : ''}`}
+          className="project-card-side project-card-front"
           aria-hidden={flipped}
-          onClick={openSiteFromCard}
         >
           {image && (
             <div className="project-card-image">
@@ -119,22 +106,7 @@ export default function Cell({ data }: CellProps) {
 
           <div className="project-card-content">
             <header className="project-card-header">
-              <h3 className="project-card-title">
-                {liveUrl ? (
-                  <a
-                    href={liveUrl}
-                    className="project-card-site-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    tabIndex={flipped ? -1 : 0}
-                    aria-label={`Visit ${title} site`}
-                  >
-                    {title}
-                  </a>
-                ) : (
-                  title
-                )}
-              </h3>
+              <h3 className="project-card-title">{title}</h3>
               {subtitle && <p className="project-card-subtitle">{subtitle}</p>}
             </header>
             <footer className="project-card-footer">
@@ -158,28 +130,12 @@ export default function Cell({ data }: CellProps) {
         </section>
 
         <section
-          className={`project-card-side project-card-back ${liveUrl ? 'project-card-side--linked' : ''}`}
+          className="project-card-side project-card-back"
           aria-hidden={!flipped}
-          onClick={openSiteFromCard}
         >
           <div className="project-card-content">
             <header className="project-card-header">
-              <h3 className="project-card-title">
-                {liveUrl ? (
-                  <a
-                    href={liveUrl}
-                    className="project-card-site-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    tabIndex={flipped ? 0 : -1}
-                    aria-label={`Visit ${title} site`}
-                  >
-                    {title}
-                  </a>
-                ) : (
-                  title
-                )}
-              </h3>
+              <h3 className="project-card-title">{title}</h3>
               {subtitle && <p className="project-card-subtitle">{subtitle}</p>}
             </header>
             <p className="project-card-desc">{desc}</p>
