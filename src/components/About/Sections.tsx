@@ -48,7 +48,8 @@ function FirstCodeVideo() {
         Your browser does not support video playback.
       </video>
       <figcaption>
-        My first code: a Turbo C animation built with if/else logic and a loop.
+        The first code I ever wrote: a Turbo C animation of a man walking with
+        an umbrella in the rain.
       </figcaption>
     </figure>
   );

@@ -2,7 +2,7 @@ export const aboutMarkdown = `# Intro
 I'm a JavaScript Full Stack Developer focused on building practical applications that solve real problems and make everyday life easier. I work across Node.js, Express, PostgreSQL, and MongoDB on the backend, with React and Next.js on the frontend. I use AI tools as part of my workflow, but I make sure I can explain and rebuild every line myself.
 # My Journey
 
-I started programming in 2024, pulled in by the idea of controlling a machine with nothing but instructions. My first language was C, and one of my earliest projects was running simple animations in Turbo C++ — a small thing, but it's what got me hooked on web development.
+I started programming in 2024 with C. The first code I ever wrote used simple if/else logic and a loop to animate a man walking with an umbrella in the rain in Turbo C. Seeing something I had written come to life on the screen for the first time sparked my interest in programming.
 
 # How I Use AI
 
