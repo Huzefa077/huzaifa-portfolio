@@ -116,6 +116,10 @@
   transform: rotateY(180deg);
 }
 
+.project-card-side--linked {
+  cursor: pointer;
+}
+
 .project-card-image {
   position: relative;
   display: block;
@@ -174,20 +178,9 @@
   background-image: none;
 }
 
-.project-card-site-link::after {
-  content: '';
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-}
-
 .project-card-site-link:focus-visible {
-  outline: none;
-}
-
-.project-card-site-link:focus-visible::after {
   outline: 2px solid var(--color-accent);
-  outline-offset: -4px;
+  outline-offset: 4px;
 }
 
 .project-card-subtitle {

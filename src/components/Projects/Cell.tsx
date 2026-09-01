@@ -2,7 +2,7 @@
 
 import dayjs from 'dayjs';
 import Image from 'next/image';
-import { useState } from 'react';
+import { type MouseEvent, useState } from 'react';
 
 import type { Project } from '@/data/projects';
 import { PROJECT_IMAGE } from '@/lib/utils';
@@ -83,14 +83,27 @@ export default function Cell({ data }: CellProps) {
 
   const year = date ? dayjs(date).format('YYYY') : null;
 
+  const openSiteFromCard = (event: MouseEvent<HTMLElement>) => {
+    if (
+      !liveUrl ||
+      !(event.target instanceof Element) ||
+      event.target.closest('a, button')
+    ) {
+      return;
+    }
+
+    window.open(liveUrl, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <article className="project-card">
       <div
         className={`project-card-flipper ${flipped ? 'project-card-flipper--flipped' : ''}`}
       >
         <section
-          className="project-card-side project-card-front"
+          className={`project-card-side project-card-front ${liveUrl ? 'project-card-side--linked' : ''}`}
           aria-hidden={flipped}
+          onClick={openSiteFromCard}
         >
           {image && (
             <div className="project-card-image">
@@ -145,8 +158,9 @@ export default function Cell({ data }: CellProps) {
         </section>
 
         <section
-          className="project-card-side project-card-back"
+          className={`project-card-side project-card-back ${liveUrl ? 'project-card-side--linked' : ''}`}
           aria-hidden={!flipped}
+          onClick={openSiteFromCard}
         >
           <div className="project-card-content">
             <header className="project-card-header">
