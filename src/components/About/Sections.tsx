@@ -1,7 +1,8 @@
 'use client';
 
 import Markdown from 'markdown-to-jsx';
-import { Children, type ReactNode } from 'react';
+import { Children, type ReactNode, useEffect, useRef } from 'react';
+import usePrefersReducedMotion from '@/hooks/usePrefersReducedMotion';
 import { createUniqueHeadingIds } from '@/lib/anchors';
 import { extractLogMarker } from '@/lib/logEntry';
 
@@ -10,6 +11,48 @@ interface AboutContentProps {
 }
 
 const LOG_VARIANT = 'about-section--log';
+
+function FirstCodeVideo() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (prefersReducedMotion) {
+      video.pause();
+      video.currentTime = 0;
+      return;
+    }
+
+    void video.play().catch(() => {
+      // Some browsers may still block autoplay; controls remain available.
+    });
+  }, [prefersReducedMotion]);
+
+  return (
+    <figure className="about-media">
+      <video
+        ref={videoRef}
+        className="about-media-video"
+        autoPlay={!prefersReducedMotion}
+        loop={!prefersReducedMotion}
+        muted
+        controls
+        playsInline
+        preload="metadata"
+        aria-label="My first Turbo C animation"
+      >
+        <source src="/media/videos/about/first-code.mp4" type="video/mp4" />
+        Your browser does not support video playback.
+      </video>
+      <figcaption>
+        My first code: a Turbo C animation built with if/else logic and a loop.
+      </figcaption>
+    </figure>
+  );
+}
 
 /**
  * A single log entry, with any leading temporal marker lifted into the gutter.
@@ -176,6 +219,7 @@ export default function AboutContent({ markdown }: AboutContentProps) {
           ) : (
             <Markdown>{section.body}</Markdown>
           )}
+          {section.title === 'My Journey' ? <FirstCodeVideo /> : null}
         </section>
       ))}
     </article>

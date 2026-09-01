@@ -4,14 +4,6 @@ I'm a JavaScript Full Stack Developer focused on building practical applications
 
 I started programming in 2024, pulled in by the idea of controlling a machine with nothing but instructions. My first language was C, and one of my earliest projects was running simple animations in Turbo C++ — a small thing, but it's what got me hooked on web development.
 
-<figure className="about-media">
-  <video className="about-media-video" controls playsInline preload="metadata" aria-label="My first Turbo C animation">
-    <source src="/media/videos/about/first-code.mp4" type="video/mp4" />
-    Your browser does not support video playback.
-  </video>
-  <figcaption>My first code: a Turbo C animation built with if/else logic and a loop.</figcaption>
-</figure>
-
 # How I Use AI
 
 I use AI-assisted coding, but with a rule: never blind. Tools like this are useful as a starting point, not a substitute for understanding what the code actually does — if I can't explain a line, I go back and reverse-engineer it until I can. I learned this the hard way while building Tabiyah Planner: a stretch of vibe-coded sessions cost me more time undoing and re-learning than it saved. The final architecture — three days of writing it properly by hand — is the version I'm proud of.
