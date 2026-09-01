@@ -258,12 +258,7 @@
     background-color var(--duration-fast) var(--ease-out);
 }
 
-.project-card-action--primary {
-  border-color: var(--color-accent-fill);
-  background: var(--color-accent-fill);
-  color: var(--color-on-accent);
-}
-
+.project-card-action--primary,
 .project-card-action--secondary {
   border-color: var(--color-accent);
   background: var(--color-bg);
@@ -282,7 +277,7 @@
   min-height: 44px;
   padding: 0.7rem 0.85rem;
   border: var(--rule) solid var(--color-accent);
-  background: var(--color-surface-subtle);
+  background: var(--color-bg);
   color: var(--color-accent);
   cursor: pointer;
   font-family: var(--font-mono);
@@ -290,13 +285,17 @@
   font-weight: var(--font-weight-medium);
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
 }
 
 .project-card-flip:hover,
 .project-card-flip:focus-visible {
-  border-color: var(--color-accent-hover);
-  background: var(--color-accent-light);
-  color: var(--color-accent-hover);
+  border-color: var(--color-accent-fill-hover);
+  background: var(--color-accent-fill-hover);
+  color: var(--color-on-accent);
 }
 
 .project-card-flip:focus-visible {
@@ -306,20 +305,9 @@
 
 .project-card-action:hover,
 .project-card-action:focus-visible {
-  border-color: var(--color-accent);
-}
-
-.project-card-action--primary:hover,
-.project-card-action--primary:focus-visible {
   border-color: var(--color-accent-fill-hover);
   background: var(--color-accent-fill-hover);
   color: var(--color-on-accent);
-}
-
-.project-card-action--secondary:hover,
-.project-card-action--secondary:focus-visible {
-  background: var(--color-accent-light);
-  color: var(--color-accent-hover);
 }
 
 .project-card-date {
