@@ -6,7 +6,7 @@ I started programming in 2024, pulled in by the idea of controlling a machine wi
 
 <figure className="about-media">
   <video className="about-media-video" controls playsInline preload="metadata" aria-label="My first Turbo C animation">
-    <source src="/videos/about/first-code.mp4" type="video/mp4" />
+    <source src="/media/videos/about/first-code.mp4" type="video/mp4" />
     Your browser does not support video playback.
   </video>
   <figcaption>My first code: a Turbo C animation built with if/else logic and a loop.</figcaption>

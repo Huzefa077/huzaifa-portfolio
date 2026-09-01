@@ -28,7 +28,7 @@ src/data/             → Static data (resume, projects, contact)
 src/hooks/            → Custom React hooks
 content/blog/         → Blog posts (Markdown with frontmatter)
 src/data/blog.ts      → External links shown on `/blog`
-public/images/        → Images and favicons
+public/media/         → Images, videos, and favicons grouped by media type and site area
 docs/                 → Documentation
 ```
 

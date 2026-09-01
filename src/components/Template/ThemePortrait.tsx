@@ -16,7 +16,7 @@ export default function ThemePortrait({
   return (
     <span className="theme-portrait">
       <Image
-        src="/images/me.jpg"
+        src="/media/images/me.jpg"
         alt={`${AUTHOR_NAME} portrait`}
         width={width}
         height={height}

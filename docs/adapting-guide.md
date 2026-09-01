@@ -102,19 +102,19 @@ needs.
 
 Identity data starts in shared files, but some text and links are hard-coded.
 
-| Content                                                        | Location                                                            |
-| -------------------------------------------------------------- | ------------------------------------------------------------------- |
-| Name, role, employer, location, email, and personal statistics | `src/data/profile.json`                                             |
-| Canonical URL, social handle, descriptions, and image settings | `src/lib/utils.ts`                                                  |
-| Social links                                                   | `src/data/contact.ts`                                               |
-| Homepage biography and employer links                          | `src/components/Template/Hero.tsx`                                  |
-| Logo initials                                                  | `src/components/Template/Navigation.tsx`                            |
-| Footer source link                                             | `src/components/Template/Footer.tsx`                                |
-| Portrait and its alt text                                      | `public/images/me.jpg`, `src/components/Template/ThemePortrait.tsx` |
-| Favicon files and web app name                                 | `public/images/favicon/`                                            |
-| Sitemap URL for crawlers                                       | `public/robots.txt`                                                 |
-| Repository statistics and GitHub API URL                       | `src/components/Stats/Site.tsx`, `src/data/stats/site.ts`           |
-| Countries map                                                  | `src/data/stats/personal.tsx`                                       |
+| Content                                                        | Location                                                                  |
+| -------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Name, role, employer, location, email, and personal statistics | `src/data/profile.json`                                                   |
+| Canonical URL, social handle, descriptions, and image settings | `src/lib/utils.ts`                                                        |
+| Social links                                                   | `src/data/contact.ts`                                                     |
+| Homepage biography and employer links                          | `src/components/Template/Hero.tsx`                                        |
+| Logo initials                                                  | `src/components/Template/Navigation.tsx`                                  |
+| Footer source link                                             | `src/components/Template/Footer.tsx`                                      |
+| Portrait and its alt text                                      | `public/media/images/me.jpg`, `src/components/Template/ThemePortrait.tsx` |
+| Favicon files and web app name                                 | `public/media/images/favicon/`                                            |
+| Sitemap URL for crawlers                                       | `public/robots.txt`                                                       |
+| Repository statistics and GitHub API URL                       | `src/components/Stats/Site.tsx`, `src/data/stats/site.ts`                 |
+| Countries map                                                  | `src/data/stats/personal.tsx`                                             |
 
 Page titles and descriptions also contain personal copy in `app/layout.tsx` and
 the `page.tsx` files under `app/`. Structured data is assembled in
@@ -122,15 +122,15 @@ the `page.tsx` files under `app/`. Structured data is assembled in
 
 ### About, résumé, and projects
 
-| Content        | Location                     |
-| -------------- | ---------------------------- |
-| About page     | `src/data/about.ts`          |
-| Work history   | `src/data/resume/work.ts`    |
-| Education      | `src/data/resume/degrees.ts` |
-| Skills         | `src/data/resume/skills.ts`  |
-| Courses        | `src/data/resume/courses.ts` |
-| Projects       | `src/data/projects.ts`       |
-| Project images | `public/images/projects/`    |
+| Content        | Location                        |
+| -------------- | ------------------------------- |
+| About page     | `src/data/about.ts`             |
+| Work history   | `src/data/resume/work.ts`       |
+| Education      | `src/data/resume/degrees.ts`    |
+| Skills         | `src/data/resume/skills.ts`     |
+| Courses        | `src/data/resume/courses.ts`    |
+| Projects       | `src/data/projects.ts`          |
+| Project images | `public/media/images/projects/` |
 
 The current role appears in the profile, homepage, résumé, and page metadata.
 Update those together.
@@ -154,7 +154,7 @@ and numbers separated by single hyphens.
 title: 'Your Post Title'
 date: '2026-01-15'
 description: 'A short description for previews and search results.'
-image: '/images/blog/my-post.webp'
+image: '/media/images/blogs/my-post/cover.webp'
 imageAlt: 'A concise description of the card image.'
 ---
 
@@ -166,11 +166,11 @@ a post during development without including it in the production export. An
 optional `image` must be a root-relative path under `public/` and must be paired
 with `imageAlt`.
 
-Keep owned blog images in `public/images/blogs/`. Prefer compressed WebP or AVIF
+Keep owned blog images in `public/media/images/blogs/`. Prefer compressed WebP or AVIF
 files over remote URLs so the static site owns its assets and does not depend on
 hotlinking or a third-party image host. Markdown images use the same paths, for
 example
-`![Descriptive alt text](/images/blogs/my-post/diagram.webp)`. Giving each post
+`![Descriptive alt text](/media/images/blogs/my-post/diagram.webp)`. Giving each post
 its own image folder keeps inline images organized as the blog grows.
 
 The production export requires at least one published post. It cannot build the
@@ -197,7 +197,7 @@ refactor.
 | Light and dark colors      | `app/styles/tokens/colors.css`          |
 | Type scale                 | `app/styles/tokens/typography.css`      |
 | Font files and assignments | `app/fonts.ts`                          |
-| Favicon                    | `public/images/favicon/`                |
+| Favicon                    | `public/media/images/favicon/`          |
 | Default metadata           | `app/layout.tsx`, `src/lib/metadata.ts` |
 | Share-card generator       | `scripts/generate-og.mjs`               |
 
@@ -292,7 +292,7 @@ assets and absolute URL construction.
 | --------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `EBADENGINE` warning or install failure | Run `nvm install`, then retry `npm ci`                                                        |
 | Port 3000 is in use                     | Run `npm run dev -- -p 3001`                                                                  |
-| Images do not appear                    | Use a URL such as `/images/photo.jpg`, not `public/images/photo.jpg`                          |
+| Images do not appear                    | Use a URL such as `/media/images/photo.jpg`, not `public/media/images/photo.jpg`              |
 | `missing "generateStaticParams()"`      | Keep at least one published Markdown post                                                     |
 | Assets return 404 on a project site     | Review the repository subpath limitation in the [deployment reference](#deployment-reference) |
 | The export verifier fails               | Run `npm run build` first, then inspect the named file or route                               |

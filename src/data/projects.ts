@@ -16,7 +16,7 @@ const data: Project[] = [
     subtitle: 'Help your child build good habits',
     liveUrl: 'https://tarbiyah-planner.vercel.app/',
     githubUrl: 'https://github.com/Huzefa077/tarbiyah-planner',
-    image: '/images/projects/tarbiyah-planner.webp',
+    image: '/media/images/projects/tarbiyah-planner.webp',
     imageAlt: 'Child using a printed Tarbiyah Planner activity chart',
     desc: 'Help children build good habits through shared routines, visible progress, and meaningful rewards agreed on with their parents.',
     tech: [
@@ -33,7 +33,7 @@ const data: Project[] = [
     subtitle: 'Face Detection, Privacy Blur & Gaze Tracking',
     liveUrl: 'https://ocula-frontend.vercel.app/',
     githubUrl: 'https://github.com/Huzefa077/ocula-frontend',
-    image: '/images/projects/ocula-image.webp',
+    image: '/media/images/projects/ocula-image.webp',
     imageAlt: 'Ocula face analysis results displayed beside an uploaded image',
     desc: 'A full-stack browser vision app for facial attribute analysis, selective identity blurring, and experimental webcam gaze calibration. It supports guest and authenticated workflows with saved scan history.',
     tech: [
@@ -50,7 +50,7 @@ const data: Project[] = [
     subtitle: 'Personalized diet and meal planning',
     liveUrl: 'https://diet-planner-ten-wheat.vercel.app/',
     githubUrl: 'https://github.com/Huzefa077/diet_planner',
-    image: '/images/projects/nutriwise-image.webp',
+    image: '/media/images/projects/nutriwise-image.webp',
     imageAlt: 'Website homepage photo',
     desc: 'A secure diet-planning platform that calculates calorie and macronutrient targets and recommends nutritionally similar meals using cosine similarity.',
     tech: [
