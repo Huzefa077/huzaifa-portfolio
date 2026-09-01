@@ -103,14 +103,12 @@
   backface-visibility: hidden;
   transition:
     border-color var(--duration-fast) var(--ease-out),
-    background-color var(--duration-fast) var(--ease-out),
     box-shadow var(--duration-normal) var(--ease-out);
 }
 
 .project-card:hover .project-card-side,
 .project-card:focus-within .project-card-side {
   border-color: var(--color-accent);
-  background-color: color-mix(in srgb, var(--color-bg) 92%, var(--color-accent));
   box-shadow: 0 0 1.25rem var(--color-accent-light);
 }
 
