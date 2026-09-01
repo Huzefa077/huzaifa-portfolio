@@ -89,7 +89,11 @@ export default function Cell({ data }: CellProps) {
         className={`project-card-flipper ${flipped ? 'project-card-flipper--flipped' : ''}`}
       >
         <section
-          className="project-card-side project-card-front"
+          className={`project-card-side project-card-front ${
+            flipped
+              ? 'project-card-side--inactive'
+              : 'project-card-side--active'
+          }`}
           aria-hidden={flipped}
         >
           {image && (
@@ -130,7 +134,11 @@ export default function Cell({ data }: CellProps) {
         </section>
 
         <section
-          className="project-card-side project-card-back"
+          className={`project-card-side project-card-back ${
+            flipped
+              ? 'project-card-side--active'
+              : 'project-card-side--inactive'
+          }`}
           aria-hidden={!flipped}
         >
           <div className="project-card-content">

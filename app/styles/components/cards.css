@@ -106,6 +106,14 @@
     box-shadow var(--duration-normal) var(--ease-out);
 }
 
+.project-card-side--active {
+  pointer-events: auto;
+}
+
+.project-card-side--inactive {
+  pointer-events: none;
+}
+
 .project-card:hover .project-card-side,
 .project-card:focus-within .project-card-side {
   border-color: var(--color-accent);
