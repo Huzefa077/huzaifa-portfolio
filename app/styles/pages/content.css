@@ -160,6 +160,26 @@
   margin-bottom: 0;
 }
 
+.about-media {
+  margin: var(--spacing-8) 0 0;
+}
+
+.about-media-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: var(--rule) solid var(--color-border);
+  background: var(--color-bg-alt);
+}
+
+.about-media figcaption {
+  margin-top: var(--spacing-3);
+  color: var(--color-fg-light);
+  font-family: var(--font-mono);
+  font-size: var(--text-ui);
+  line-height: var(--leading-normal);
+}
+
 .about-intro p {
   max-width: var(--measure-read);
   font-size: clamp(1.04rem, 0.7vw + 0.95rem, 1.1rem);
