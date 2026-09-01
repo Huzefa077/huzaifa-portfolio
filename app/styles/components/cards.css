@@ -75,8 +75,7 @@
     z-index 0s;
 }
 
-.project-card:hover,
-.project-card:focus-within {
+.project-card:hover {
   z-index: 2;
   transform: translateY(-2px) scale(1.03);
 }
@@ -114,8 +113,7 @@
   pointer-events: none;
 }
 
-.project-card:hover .project-card-side,
-.project-card:focus-within .project-card-side {
+.project-card:hover .project-card-side {
   border-color: var(--color-accent);
   box-shadow: 0 0 1.25rem var(--color-accent-light);
 }
@@ -143,8 +141,7 @@
   transition: filter var(--duration-normal) var(--ease-out);
 }
 
-.project-card:hover .project-card-image img,
-.project-card:focus-within .project-card-image img {
+.project-card:hover .project-card-image img {
   filter: grayscale(0) contrast(1);
 }
 
@@ -220,8 +217,7 @@
   color: var(--color-fg-light);
 }
 
-.project-card:hover .project-card-tech .tech-tag,
-.project-card:focus-within .project-card-tech .tech-tag {
+.project-card:hover .project-card-tech .tech-tag {
   border-color: transparent;
   color: var(--color-fg-light);
 }
