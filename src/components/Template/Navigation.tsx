@@ -31,8 +31,8 @@ export default function Navigation() {
   };
 
   return (
-    <header className="site-header">
-      <div className="site-brand">
+    <>
+      <div className="mobile-site-brand">
         <Hamburger />
         <Link
           href="/"
@@ -43,40 +43,50 @@ export default function Navigation() {
         </Link>
       </div>
 
-      <nav
-        className="nav-links"
-        aria-label="Primary"
-        onMouseLeave={hideIndicator}
-      >
-        {routes
-          .filter((l) => l.primary !== false)
-          .map((l) => {
-            const active = isActiveRoute(pathname, l.path);
+      <header className="site-header">
+        <Link
+          href="/"
+          className="site-logo site-logo--desktop"
+          aria-label={`${AUTHOR_NAME} — home`}
+        >
+          <span className="logo-text">HS</span>
+        </Link>
 
-            return (
-              <Link
-                key={l.label}
-                href={l.path}
-                className={`nav-link ${active ? 'active' : ''}`}
-                aria-current={active ? 'page' : undefined}
-                onMouseEnter={moveIndicator}
-                onFocus={moveIndicator}
-                onBlur={hideIndicator}
-              >
-                {l.label}
-              </Link>
-            );
-          })}
-        <span
-          ref={indicatorRef}
-          className="nav-hover-indicator"
-          aria-hidden="true"
-        />
-      </nav>
+        <nav
+          className="nav-links"
+          aria-label="Primary"
+          onMouseLeave={hideIndicator}
+        >
+          {routes
+            .filter((l) => l.primary !== false)
+            .map((l) => {
+              const active = isActiveRoute(pathname, l.path);
 
-      <div className="nav-actions">
-        <ThemeToggle />
-      </div>
-    </header>
+              return (
+                <Link
+                  key={l.label}
+                  href={l.path}
+                  className={`nav-link ${active ? 'active' : ''}`}
+                  aria-current={active ? 'page' : undefined}
+                  onMouseEnter={moveIndicator}
+                  onFocus={moveIndicator}
+                  onBlur={hideIndicator}
+                >
+                  {l.label}
+                </Link>
+              );
+            })}
+          <span
+            ref={indicatorRef}
+            className="nav-hover-indicator"
+            aria-hidden="true"
+          />
+        </nav>
+
+        <div className="nav-actions">
+          <ThemeToggle />
+        </div>
+      </header>
+    </>
   );
 }
