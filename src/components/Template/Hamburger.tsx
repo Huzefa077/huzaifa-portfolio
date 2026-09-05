@@ -7,7 +7,6 @@ import { createPortal } from 'react-dom';
 
 import routes from '../../data/routes';
 import { isActiveRoute } from '../../lib/routes';
-import { AUTHOR_NAME } from '../../lib/utils';
 import SlideMenu from './SlideMenu';
 
 const MENU_ID = 'mobile-nav-menu';
@@ -26,28 +25,6 @@ export default function Hamburger() {
 
   const slideMenu = (
     <SlideMenu id={MENU_ID} isOpen={open} onClose={closeMenu} position="left">
-      <div className="slide-menu-header">
-        <button
-          type="button"
-          onClick={closeMenu}
-          className="hamburger-button"
-          aria-label="Close navigation menu"
-        >
-          <span className="hamburger-icon hamburger-icon--open">
-            <span />
-            <span />
-            <span />
-          </span>
-        </button>
-        <Link
-          href="/"
-          className="site-logo"
-          onClick={closeMenu}
-          aria-label={`${AUTHOR_NAME} — home`}
-        >
-          <span className="logo-text">HS</span>
-        </Link>
-      </div>
       <ul className="hamburger-ul">
         {routes
           .filter((l) => l.primary !== false)
