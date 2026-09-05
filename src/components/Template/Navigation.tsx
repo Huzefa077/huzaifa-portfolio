@@ -32,9 +32,16 @@ export default function Navigation() {
 
   return (
     <header className="site-header">
-      <Link href="/" className="site-logo" aria-label={`${AUTHOR_NAME} — home`}>
-        <span className="logo-text">HS</span>
-      </Link>
+      <div className="site-brand">
+        <Hamburger />
+        <Link
+          href="/"
+          className="site-logo"
+          aria-label={`${AUTHOR_NAME} — home`}
+        >
+          <span className="logo-text">HS</span>
+        </Link>
+      </div>
 
       <nav
         className="nav-links"
@@ -69,7 +76,6 @@ export default function Navigation() {
 
       <div className="nav-actions">
         <ThemeToggle />
-        <Hamburger />
       </div>
     </header>
   );

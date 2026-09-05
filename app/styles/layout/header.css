@@ -101,11 +101,10 @@
 .slide-menu {
   -webkit-overflow-scrolling: touch;
   background-color: var(--color-bg-alt);
-  border-left: var(--rule) solid var(--color-fg-bold);
   bottom: 0;
   max-width: 82vw;
   overflow-y: auto;
-  padding: 1.5rem 1.5rem 0;
+  padding: 0;
   position: fixed;
   top: 0;
   transition: transform var(--duration-normal) var(--ease-menu);
@@ -114,11 +113,13 @@
 }
 
 .slide-menu--right {
+  border-left: var(--rule) solid var(--color-fg-bold);
   right: 0;
   transform: translateX(100%);
 }
 
 .slide-menu--left {
+  border-right: var(--rule) solid var(--color-fg-bold);
   left: 0;
   transform: translateX(-100%);
 }
@@ -243,31 +244,12 @@
   transform: translateY(50%) rotate(-45deg);
 }
 
-.slide-menu-close {
+.slide-menu-header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  margin: 0 -0.75rem 0.5rem auto;
-  padding: 0;
-  background: transparent;
-  border: 0;
-  border-radius: var(--radius-sm);
-  color: var(--color-fg-light);
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: color var(--duration-fast) var(--ease-out);
-}
-
-.slide-menu-close:hover {
-  color: var(--color-fg-bold);
-}
-
-.slide-menu-close:focus-visible {
-  outline: var(--rule-strong) solid var(--color-accent);
-  outline-offset: 2px;
+  height: var(--header-height-mobile);
+  padding: 0 1rem;
+  border-bottom: var(--rule) solid var(--color-border);
 }
 
 /* Mobile navigation — the same mono annotation as the desktop nav,
@@ -277,7 +259,7 @@
   flex-direction: column;
   gap: 0;
   list-style: none;
-  margin: 0;
+  margin: 1.5rem;
   padding: 0;
 }
 
@@ -333,21 +315,6 @@
 
 .hamburger-ul li a:hover span,
 .hamburger-ul li a:focus-visible span {
-  color: var(--color-fg-bold);
-}
-
-/* The index entry is the person's name, not a section label,
-   so it is set in display type and sits above the rule. */
-.hamburger-ul li:has(.index-li) {
-  border-bottom-color: var(--color-fg-bold);
-}
-
-.hamburger-ul li a .index-li {
-  font-family: var(--font-display);
-  font-size: var(--text-md);
-  font-weight: var(--font-weight-black);
-  letter-spacing: var(--tracking-display);
-  text-transform: none;
   color: var(--color-fg-bold);
 }
 

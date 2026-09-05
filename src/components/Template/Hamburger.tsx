@@ -7,6 +7,7 @@ import { createPortal } from 'react-dom';
 
 import routes from '../../data/routes';
 import { isActiveRoute } from '../../lib/routes';
+import { AUTHOR_NAME } from '../../lib/utils';
 import SlideMenu from './SlideMenu';
 
 const MENU_ID = 'mobile-nav-menu';
@@ -24,17 +25,29 @@ export default function Hamburger() {
   const closeMenu = useCallback(() => setOpen(false), []);
 
   const slideMenu = (
-    <SlideMenu id={MENU_ID} isOpen={open} onClose={closeMenu} position="right">
-      {/* The trap keeps focus inside the dialog, so it needs a way out that
-          is not the Escape key alone. */}
-      <button
-        type="button"
-        className="slide-menu-close"
-        onClick={closeMenu}
-        aria-label="Close navigation menu"
-      >
-        <span aria-hidden="true">×</span>
-      </button>
+    <SlideMenu id={MENU_ID} isOpen={open} onClose={closeMenu} position="left">
+      <div className="slide-menu-header">
+        <button
+          type="button"
+          onClick={closeMenu}
+          className="hamburger-button"
+          aria-label="Close navigation menu"
+        >
+          <span className="hamburger-icon hamburger-icon--open">
+            <span />
+            <span />
+            <span />
+          </span>
+        </button>
+        <Link
+          href="/"
+          className="site-logo"
+          onClick={closeMenu}
+          aria-label={`${AUTHOR_NAME} — home`}
+        >
+          <span className="logo-text">HS</span>
+        </Link>
+      </div>
       <ul className="hamburger-ul">
         {routes
           .filter((l) => l.primary !== false)
@@ -51,9 +64,7 @@ export default function Hamburger() {
                   className={active ? 'active' : undefined}
                   aria-current={active ? 'page' : undefined}
                 >
-                  <span className={l.index ? 'index-li' : undefined}>
-                    {l.label}
-                  </span>
+                  <span>{l.label}</span>
                 </Link>
               </li>
             );
