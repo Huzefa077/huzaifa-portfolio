@@ -253,11 +253,70 @@
    Individual post layout and typography
    ======================================== */
 
+.post-layout {
+  width: 100%;
+  max-width: var(--measure-read);
+  margin-inline: auto;
+}
+
 .post-page {
   width: 100%;
-  max-width: var(--measure-page);
-  margin: 0 auto;
+  max-width: var(--measure-read);
+  margin: 0;
   padding: 0;
+}
+
+.post-back-link {
+  position: sticky;
+  top: calc(var(--header-height) + 1.5rem);
+  align-self: start;
+  z-index: 1;
+  margin-bottom: -2.25rem;
+  transform: translateX(calc(-100% - 10rem));
+}
+
+.blog-back-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.25rem;
+  padding: 0.45rem 0.6rem;
+  border: var(--rule) solid var(--color-control-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  background-image: none;
+  color: var(--color-fg-light);
+  font-family: var(--font-mono);
+  font-size: var(--text-ui);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.blog-back-control:focus-visible {
+  border-color: var(--color-accent-fill-hover);
+  background: var(--color-accent-fill-hover);
+  color: var(--color-on-accent);
+  outline: var(--rule-strong) solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .blog-back-control:hover {
+    border-color: var(--color-accent-fill-hover);
+    background: var(--color-accent-fill-hover);
+    background-image: none;
+    color: var(--color-on-accent);
+  }
+}
+
+.mobile-post-back-dock {
+  display: none;
 }
 
 .reading-progress {
@@ -280,6 +339,32 @@
   transform: scaleX(var(--reading-progress, 0));
   transform-origin: left center;
   will-change: transform;
+}
+
+@media (max-width: 1024px) {
+  .post-back-link {
+    display: none;
+  }
+
+  .mobile-post-back-dock {
+    display: flex;
+    justify-content: center;
+    min-height: 2.5rem;
+    margin: 2rem 0;
+  }
+
+  .mobile-post-back-link {
+    position: fixed;
+    z-index: calc(var(--z-header) - 1);
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .mobile-post-back-dock--docked .mobile-post-back-link {
+    position: static;
+    transform: none;
+  }
 }
 
 @media (max-width: 735px) {

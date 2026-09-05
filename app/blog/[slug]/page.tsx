@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+import MobileBlogBackDock from '@/components/Blog/MobileBlogBackDock';
 import PostContent from '@/components/Blog/PostContent';
 import ReadingProgress from '@/components/Blog/ReadingProgress';
 import ShareButton from '@/components/Blog/ShareButton';
@@ -83,6 +85,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const url = `${SITE_URL}/blog/${post.slug}/`;
   const blogUrl = `${SITE_URL}/blog/`;
   const imageSizes = readPostImageSizes(post.content);
+  const sourcesMatch = /^## Sources\s*$/m.exec(post.content);
+  const mainContent = sourcesMatch
+    ? post.content.slice(0, sourcesMatch.index).trimEnd()
+    : post.content;
+  const sourcesContent = sourcesMatch
+    ? post.content.slice(sourcesMatch.index).trimStart()
+    : null;
   const coverSize = post.image ? readImageSize(post.image) : null;
   const articleImage =
     post.image && post.imageAlt && coverSize
@@ -107,31 +116,46 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         ]}
       />
       <ReadingProgress />
-      <article className="post-page">
-        <header className="post-header">
-          <time className="post-date" dateTime={post.date}>
-            {formatDate(post.date)}
-          </time>
-          <h1 className="post-title">{post.title}</h1>
-          <p className="post-description">{post.description}</p>
-          <div className="post-header-actions">
-            <ShareButton title={post.title} url={url} className="post-share" />
+      <article className="post-layout">
+        <Link href="/blog/" className="blog-back-control post-back-link">
+          <span aria-hidden="true">←</span> Back
+        </Link>
+        <div className="post-page">
+          <header className="post-header">
+            <time className="post-date" dateTime={post.date}>
+              {formatDate(post.date)}
+            </time>
+            <h1 className="post-title">{post.title}</h1>
+            <p className="post-description">{post.description}</p>
+            <div className="post-header-actions">
+              <ShareButton
+                title={post.title}
+                url={url}
+                className="post-share"
+              />
+            </div>
+          </header>
+          {post.image && post.imageAlt && coverSize ? (
+            <figure className="post-cover">
+              <Image
+                src={post.image}
+                alt={post.imageAlt}
+                width={coverSize.width}
+                height={coverSize.height}
+                priority
+                sizes="(max-width: 735px) 100vw, 46rem"
+              />
+            </figure>
+          ) : null}
+          <div className="prose">
+            <PostContent content={mainContent} imageSizes={imageSizes} />
           </div>
-        </header>
-        {post.image && post.imageAlt && coverSize ? (
-          <figure className="post-cover">
-            <Image
-              src={post.image}
-              alt={post.imageAlt}
-              width={coverSize.width}
-              height={coverSize.height}
-              priority
-              sizes="(max-width: 735px) 100vw, 46rem"
-            />
-          </figure>
-        ) : null}
-        <div className="prose">
-          <PostContent content={post.content} imageSizes={imageSizes} />
+          <MobileBlogBackDock />
+          {sourcesContent ? (
+            <div className="prose post-sources">
+              <PostContent content={sourcesContent} imageSizes={imageSizes} />
+            </div>
+          ) : null}
         </div>
       </article>
     </PageWrapper>
