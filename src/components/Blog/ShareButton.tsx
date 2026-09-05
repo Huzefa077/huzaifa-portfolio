@@ -43,8 +43,10 @@ export default function ShareButton({
       onClick={share}
       aria-label={`Share ${title}`}
     >
-      <span aria-hidden="true">↗</span>
-      {status === 'copied' ? 'Copied' : 'Share'}
+      <span className="share-button-content">
+        <span aria-hidden="true">↗</span>
+        {status === 'copied' ? 'Copied' : 'Share'}
+      </span>
     </button>
   );
 }
