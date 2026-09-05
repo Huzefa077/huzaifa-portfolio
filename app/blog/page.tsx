@@ -66,7 +66,7 @@ export default function BlogPage() {
       />
       <section className="writing-page">
         <header className="writing-header">
-          <h1 className="page-title">Blogs</h1>
+          <h1 className="page-title">Blog</h1>
           <p className="page-subtitle">
             Practical notes on development, projects, and what I learn along the
             way.

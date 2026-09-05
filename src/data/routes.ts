@@ -25,7 +25,7 @@ const routes: Route[] = [
     path: '/resume',
   },
   {
-    label: 'Blogs',
+    label: 'Blog',
     path: '/blog',
   },
   {

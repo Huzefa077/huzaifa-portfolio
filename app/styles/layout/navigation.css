@@ -4,6 +4,7 @@
    ======================================== */
 
 .site-logo {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,6 +13,19 @@
   gap: 0.5rem;
   text-decoration: none;
   background-image: none;
+}
+
+.site-logo::after {
+  content: '';
+  position: absolute;
+  right: 0.65rem;
+  bottom: 0.35rem;
+  left: 0.65rem;
+  height: var(--rule-strong);
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--duration-normal) var(--ease-out);
 }
 
 .mobile-menu-trigger {
@@ -35,12 +49,58 @@
 }
 
 .logo-text {
+  display: inline-flex;
   font-family: var(--font-display);
   font-size: var(--text-lg);
   font-weight: var(--font-weight-black);
   color: var(--color-fg-bold);
   letter-spacing: var(--tracking-display);
   line-height: 1;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.logo-letter {
+  display: block;
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+@media (min-width: 736px) {
+  .site-logo:hover .logo-text,
+  .site-logo:focus-visible .logo-text {
+    color: var(--color-accent);
+  }
+
+  .site-logo:hover .logo-letter--h,
+  .site-logo:focus-visible .logo-letter--h {
+    transform: translate(-2px, -1px) rotate(-4deg);
+  }
+
+  .site-logo:hover .logo-letter--s,
+  .site-logo:focus-visible .logo-letter--s {
+    transform: translate(2px, 1px) rotate(4deg);
+  }
+
+  .site-logo:hover::after,
+  .site-logo:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  .site-logo:focus-visible {
+    outline: var(--rule-strong) solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-logo::after,
+  .logo-letter {
+    transition: none;
+  }
+
+  .site-logo:hover .logo-letter,
+  .site-logo:focus-visible .logo-letter {
+    transform: none;
+  }
 }
 
 /* Nav labels are instrument annotation, not prose:

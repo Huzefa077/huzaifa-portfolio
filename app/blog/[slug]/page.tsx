@@ -38,6 +38,16 @@ export async function generateMetadata({
 
   const url = `${SITE_URL}/blog/${post.slug}/`;
   const pageTitle = `${post.title} | ${AUTHOR_NAME}`;
+  const postImageSize = post.image ? readImageSize(post.image) : null;
+  const postImage =
+    post.image && post.imageAlt && postImageSize
+      ? {
+          url: new URL(post.image, SITE_URL).toString(),
+          width: postImageSize.width,
+          height: postImageSize.height,
+          alt: post.imageAlt,
+        }
+      : null;
 
   return {
     title: post.title,
@@ -51,11 +61,13 @@ export async function generateMetadata({
       url,
       publishedTime: post.date,
       authors: [AUTHOR_NAME],
+      ...(postImage ? { images: [postImage] } : {}),
     },
     twitter: {
       ...sharedTwitter,
       title: pageTitle,
       description: post.description,
+      ...(postImage ? { images: [postImage] } : {}),
     },
   };
 }
@@ -72,12 +84,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const blogUrl = `${SITE_URL}/blog/`;
   const imageSizes = readPostImageSizes(post.content);
   const coverSize = post.image ? readImageSize(post.image) : null;
+  const articleImage =
+    post.image && post.imageAlt && coverSize
+      ? {
+          url: new URL(post.image, SITE_URL).toString(),
+          width: coverSize.width,
+          height: coverSize.height,
+          alt: post.imageAlt,
+        }
+      : undefined;
 
   return (
     <PageWrapper mainClassName="page-main--blog">
       <SchemaGraph
         nodes={[
-          blogPostingNode(post),
+          blogPostingNode(post, articleImage),
           breadcrumbNode(url, [
             { name: 'Home', url: HOME_URL },
             { name: 'Blog', url: blogUrl },

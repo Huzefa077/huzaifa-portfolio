@@ -38,7 +38,10 @@ export default function Navigation() {
           className="site-logo"
           aria-label={`${AUTHOR_NAME} — home`}
         >
-          <span className="logo-text">HS</span>
+          <span className="logo-text" aria-hidden="true">
+            <span className="logo-letter logo-letter--h">H</span>
+            <span className="logo-letter logo-letter--s">S</span>
+          </span>
         </Link>
 
         <nav
