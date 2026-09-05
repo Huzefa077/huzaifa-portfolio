@@ -32,21 +32,10 @@ export default function Navigation() {
 
   return (
     <>
-      <div className="mobile-site-brand">
-        <Hamburger />
-        <Link
-          href="/"
-          className="site-logo"
-          aria-label={`${AUTHOR_NAME} — home`}
-        >
-          <span className="logo-text">HS</span>
-        </Link>
-      </div>
-
       <header className="site-header">
         <Link
           href="/"
-          className="site-logo site-logo--desktop"
+          className="site-logo"
           aria-label={`${AUTHOR_NAME} — home`}
         >
           <span className="logo-text">HS</span>
@@ -87,6 +76,9 @@ export default function Navigation() {
           <ThemeToggle />
         </div>
       </header>
+      <div className="mobile-menu-trigger">
+        <Hamburger />
+      </div>
     </>
   );
 }

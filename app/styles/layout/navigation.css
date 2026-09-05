@@ -14,23 +14,23 @@
   background-image: none;
 }
 
-.mobile-site-brand {
+.mobile-menu-trigger {
   display: none;
 }
 
 @media (max-width: 735px) {
-  .mobile-site-brand {
+  .mobile-menu-trigger {
     position: fixed;
     top: 0;
-    left: 1rem;
+    right: 1rem;
     z-index: calc(var(--z-menu) + 1);
     display: flex;
     align-items: center;
     height: var(--header-height-mobile);
   }
 
-  .site-logo--desktop {
-    display: none;
+  .nav-actions {
+    margin-right: 44px;
   }
 }
 

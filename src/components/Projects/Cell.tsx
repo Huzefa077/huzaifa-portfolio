@@ -1,5 +1,6 @@
 'use client';
 
+import dayjs from 'dayjs';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -49,9 +50,38 @@ function ProjectActions({
   );
 }
 
+function TechTags({ tech }: { tech?: string[] }) {
+  if (!tech?.length) return null;
+
+  return (
+    <div className="project-card-tech" aria-label="Technologies used">
+      <span className="project-card-tech-label">Tech stack</span>
+      <div className="project-card-tech-list">
+        {tech.map((technology) => (
+          <span key={technology} className="tech-tag">
+            {technology}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Cell({ data }: CellProps) {
   const [flipped, setFlipped] = useState(false);
-  const { title, subtitle, liveUrl, githubUrl, image, imageAlt, desc } = data;
+  const {
+    title,
+    subtitle,
+    liveUrl,
+    githubUrl,
+    image,
+    imageAlt,
+    date,
+    desc,
+    tech,
+  } = data;
+
+  const year = date ? dayjs(date).format('YYYY') : null;
 
   return (
     <article className="project-card">
@@ -84,7 +114,12 @@ export default function Cell({ data }: CellProps) {
               {subtitle && <p className="project-card-subtitle">{subtitle}</p>}
             </header>
             <footer className="project-card-footer">
-              <ProjectActions liveUrl={liveUrl} interactive={!flipped} />
+              <ProjectActions
+                liveUrl={liveUrl}
+                githubUrl={githubUrl}
+                interactive={!flipped}
+              />
+              {year && <span className="project-card-date">{year}</span>}
             </footer>
             <button
               type="button"
@@ -107,9 +142,19 @@ export default function Cell({ data }: CellProps) {
           aria-hidden={!flipped}
         >
           <div className="project-card-content">
+            <header className="project-card-header">
+              <h3 className="project-card-title">{title}</h3>
+              {subtitle && <p className="project-card-subtitle">{subtitle}</p>}
+            </header>
             <p className="project-card-desc">{desc}</p>
+            <TechTags tech={tech} />
             <footer className="project-card-footer">
-              <ProjectActions githubUrl={githubUrl} interactive={flipped} />
+              <ProjectActions
+                liveUrl={liveUrl}
+                githubUrl={githubUrl}
+                interactive={flipped}
+              />
+              {year && <span className="project-card-date">{year}</span>}
             </footer>
             <button
               type="button"
