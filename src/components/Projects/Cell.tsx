@@ -49,9 +49,27 @@ function ProjectActions({
   );
 }
 
+function TechTags({ tech }: { tech?: string[] }) {
+  if (!tech?.length) return null;
+
+  return (
+    <div className="project-card-tech" aria-label="Technologies used">
+      <span className="project-card-tech-label">Tech stack</span>
+      <div className="project-card-tech-list">
+        {tech.map((technology) => (
+          <span key={technology} className="tech-tag">
+            {technology}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Cell({ data }: CellProps) {
   const [flipped, setFlipped] = useState(false);
-  const { title, subtitle, liveUrl, githubUrl, image, imageAlt, desc } = data;
+  const { title, subtitle, liveUrl, githubUrl, image, imageAlt, desc, tech } =
+    data;
 
   return (
     <article className="project-card">
@@ -108,6 +126,7 @@ export default function Cell({ data }: CellProps) {
         >
           <div className="project-card-content">
             <p className="project-card-desc">{desc}</p>
+            <TechTags tech={tech} />
             <footer className="project-card-footer">
               <ProjectActions githubUrl={githubUrl} interactive={flipped} />
             </footer>

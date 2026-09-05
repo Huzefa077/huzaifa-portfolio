@@ -30,20 +30,13 @@ const data: Project[] = [
   },
   {
     title: 'Ocula',
-    subtitle: 'Face Detection, Privacy Blur & Gaze Tracking',
+    subtitle: 'Face Detection & Privacy Blur',
     liveUrl: 'https://ocula-frontend.vercel.app/',
     githubUrl: 'https://github.com/Huzefa077/ocula-frontend',
     image: '/media/images/projects/ocula-image.webp',
     imageAlt: 'Ocula face analysis results displayed beside an uploaded image',
-    desc: 'A full-stack browser vision app for facial attribute analysis, selective identity blurring, and experimental webcam gaze calibration. It supports guest and authenticated workflows with saved scan history.',
-    tech: [
-      'React',
-      'Node.js',
-      'Express',
-      'PostgreSQL',
-      'face-api.js',
-      'WebGazer.js',
-    ],
+    desc: 'A full-stack browser vision app for facial attribute analysis and selective identity blurring. It supports guest and authenticated workflows with saved scan history.',
+    tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'face-api.js'],
   },
   {
     title: 'NutriWise \n(Under Maintainence)',
