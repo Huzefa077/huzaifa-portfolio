@@ -84,9 +84,11 @@
 }
 
 .hero-resume-link {
+  position: relative;
+  isolation: isolate;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  overflow: hidden;
   min-height: 2.75rem;
   padding: 0.5rem 0.25rem;
   font-family: var(--font-mono);
@@ -104,6 +106,14 @@
     text-decoration-color var(--duration-fast) var(--ease-out);
 }
 
+.hero-resume-link-content {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .hero-resume-link:hover {
   color: var(--color-accent);
   text-decoration-color: var(--color-accent);
@@ -113,6 +123,36 @@
 .hero-resume-link:focus-visible {
   outline: var(--rule-strong) solid var(--color-accent);
   outline-offset: 2px;
+}
+
+@media (min-width: 736px) {
+  .hero-resume-link::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    background: var(--color-accent-fill);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  .hero-resume-link:hover,
+  .hero-resume-link:focus-visible {
+    color: var(--color-on-accent);
+    text-decoration-color: var(--color-on-accent);
+  }
+
+  .hero-resume-link:hover::before,
+  .hero-resume-link:focus-visible::before {
+    transform: scaleX(1);
+  }
+}
+
+@media (min-width: 736px) and (prefers-reduced-motion: reduce) {
+  .hero-resume-link::before {
+    transition: none;
+  }
 }
 
 /* Portrait — squared off. A circular avatar is the one shape this

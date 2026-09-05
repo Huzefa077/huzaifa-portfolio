@@ -35,6 +35,7 @@ export default function SlideMenu({
 
     const scrollY = window.scrollY;
     const { body } = document;
+    const { documentElement } = document;
 
     body.style.position = 'fixed';
     body.style.top = `-${scrollY}px`;
@@ -42,11 +43,17 @@ export default function SlideMenu({
     body.style.right = '0';
 
     return () => {
+      const previousScrollBehavior = documentElement.style.scrollBehavior;
+      documentElement.style.scrollBehavior = 'auto';
       body.style.position = '';
       body.style.top = '';
       body.style.left = '';
       body.style.right = '';
       window.scrollTo(0, scrollY);
+
+      window.requestAnimationFrame(() => {
+        documentElement.style.scrollBehavior = previousScrollBehavior;
+      });
     };
   }, [isOpen]);
 
