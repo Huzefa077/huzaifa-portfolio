@@ -49,10 +49,6 @@ export default function PostContent({
                   width={width}
                   height={height}
                   loading="lazy"
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                  }}
                 />
               );
             },

@@ -91,7 +91,7 @@ export default function Cell({ data }: CellProps) {
                 alt={imageAlt ?? `${title} project screenshot`}
                 width={PROJECT_IMAGE.width}
                 height={PROJECT_IMAGE.height}
-                sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
+                sizes="(max-width: 599px) 82vw, (max-width: 899px) 50vw, (max-width: 1099px) 33vw, 25vw"
               />
             </div>
           )}

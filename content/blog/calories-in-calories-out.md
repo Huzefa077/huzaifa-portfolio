@@ -2,7 +2,7 @@
 title: 'Calories In, Calories Out: The One Idea Behind Every Diet'
 date: '2026-09-05'
 description: 'A simple explanation of energy balance, why popular diets can work, and why calories are only part of a sustainable approach.'
-image: '/media/images/blogs/diet/healthy-food.jpg'
+image: '/media/images/blogs/calorie-in-calorie-out/healthy-food.webp'
 imageAlt: 'A balanced meal with chicken, brown rice, broccoli, fruit, nuts, yogurt, and water.'
 ---
 
@@ -14,7 +14,7 @@ Think of your body like a bank account, but for energy. Every day you “deposit
 
 Deposit more than you spend, and your body stores the surplus. Spend more than you deposit, and your body draws on stored energy. No magic.
 
-![The “It's not fast food if you eat it slow” meme joking about diet logic.](/media/images/blogs/diet/fastFood_eatSlow_meme.jpeg)
+![The “It's not fast food if you eat it slow” meme joking about diet logic.](/media/images/blogs/calorie-in-calorie-out/fastFood_eatSlow_meme.webp)
 
 ## How It Works
 
@@ -35,7 +35,7 @@ Suppose you burn 2,200 calories a day and eat 1,800. That creates an estimated 4
 
 Eat 2,600 instead, and the energy balance points in the other direction: toward weight gain over time.
 
-![Patrick watching quick weight-loss tutorials while eating a burger.](/media/images/blogs/diet/patrick_meme.jpeg)
+![Patrick watching quick weight-loss tutorials while eating a burger.](/media/images/blogs/calorie-in-calorie-out/patrick_meme.webp)
 
 ## Why It Matters—and Where It Falls Short
 

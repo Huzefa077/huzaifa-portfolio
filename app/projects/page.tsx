@@ -1,11 +1,16 @@
 import type { Metadata } from 'next';
 
-import Cell from '@/components/Projects/Cell';
+import ProjectCollection from '@/components/Projects/ProjectCollection';
 import { SchemaGraph } from '@/components/Schema';
 import PageWrapper from '@/components/Template/PageWrapper';
 import data from '@/data/projects';
 import { createPageMetadata } from '@/lib/metadata';
-import { breadcrumbNode, collectionPageNode, HOME_URL, SITE_URL } from '@/lib/schema';
+import {
+  breadcrumbNode,
+  collectionPageNode,
+  HOME_URL,
+  SITE_URL,
+} from '@/lib/schema';
 import { AUTHOR_NAME } from '@/lib/utils';
 
 const PROJECTS_URL = `${SITE_URL}/projects/`;
@@ -43,11 +48,7 @@ export default function ProjectsPage() {
           </p>
         </header>
 
-        <div className="projects-grid">
-          {data.map((project) => (
-            <Cell data={project} key={project.title} />
-          ))}
-        </div>
+        <ProjectCollection projects={data} />
       </section>
     </PageWrapper>
   );

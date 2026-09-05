@@ -126,6 +126,11 @@
 }
 
 @media (min-width: 736px) {
+  .hero-resume-link {
+    min-height: 2.875rem;
+    padding: 0 1.25rem;
+  }
+
   .hero-resume-link::before {
     content: '';
     position: absolute;
