@@ -6,11 +6,11 @@ I started programming in 2024 with C. The first code I ever wrote used simple if
 
 # How I Use AI
 
-I use AI-assisted coding, but with a rule: never blind. Tools like this are useful as a starting point, not a substitute for understanding what the code actually does — if I can't explain a line, I go back and reverse-engineer it until I can. I learned this the hard way while building Tabiyah Planner: a stretch of vibe-coded sessions cost me more time undoing and re-learning than it saved. The final architecture — three days of writing it properly by hand — is the version I'm proud of.
+I use AI-assisted coding, but with a rule: never blind. Tools like this are useful as a starting point, not a substitute for understanding what the code actually does — if I can't explain a line, I go back and reverse-engineer it until I can. I learned this the hard way while building GrowHabits: a stretch of vibe-coded sessions cost me more time undoing and re-learning than it saved. The final architecture — three days of writing it properly by hand — is the version I'm proud of.
 
-# Featured Project: Tabiyah Planner
+# Featured Project: GrowHabits
 
-Tabiyah Planner is a habit-and-routine tracker I designed after looking into what parents of average 9-year-olds actually struggle with. Kids today are more anxious, more irritable, and more phone-dependent than a few years ago, and I wanted to build something around that problem instead of a generic to-do app.
+GrowHabits is a habit-and-routine tracker I designed after looking into what parents of average 9-year-olds actually struggle with. Kids today are more anxious, more irritable, and more phone-dependent than a few years ago, and I wanted to build something around that problem instead of a generic to-do app.
 
 The core idea is built on daily reward loops rather than long-term ones — a small win today (a treat, a "well done," an evening show) is what makes a brain want to repeat the effort tomorrow. Long-term rewards don't work the same way for a 9-year-old. I designed the reward structure around that, then built the planner on top of it in Next.js, TypeScript, and PostgreSQL.
 

@@ -21,12 +21,12 @@ export interface Project {
 
 const data: Project[] = [
   {
-    title: 'Tarbiyah Planner',
+    title: 'GrowHabits',
     subtitle: 'Help your child build good habits',
     liveUrl: 'https://tarbiyah-planner.vercel.app/',
     githubUrl: 'https://github.com/Huzefa077/tarbiyah-planner',
     image: '/media/images/projects/tarbiyah-planner.webp',
-    imageAlt: 'Child using a printed Tarbiyah Planner activity chart',
+    imageAlt: 'Child using a printed GrowHabits activity chart',
     desc: 'Help children build good habits through shared routines, visible progress, and meaningful rewards agreed on with their parents.',
     categories: ['Full Stack'],
     tech: [

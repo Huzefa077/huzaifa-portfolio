@@ -18,7 +18,7 @@ const work: Position[] = [
     url: 'https://tarbiyah-planner.vercel.app/',
     startDate: '2026-07-28',
     summary:
-      'Designed and built Tarbiyah Planner, a custom family routine-planning application for two families in my network, turning their requirements and feedback into a practical digital product.',
+      'Designed and built GrowHabits, a custom family routine-planning application for two families in my network, turning their requirements and feedback into a practical digital product.',
     highlights: [
       'Developed the full-stack application using Next.js, TypeScript, TypeORM, PostgreSQL, and Tailwind CSS.',
       'Built reusable typed components for personalized routines and daily, weekly, and monthly planner views.',
