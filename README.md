@@ -1,165 +1,121 @@
-# Portfolio Website
+# Huzaifa Sheikh — Developer Portfolio
 
-My personal developer portfolio, featuring my projects, experience, skills, writing, resume, and contact details.
+[huzaifasheikh.dev](https://huzaifasheikh.dev) is my personal portfolio and publishing space. It presents the full-stack applications I have built, my experience and technical skills, and articles in which I explain what I learn.
 
-## Live Website
+The site is built as a statically exported Next.js application and deployed to GitHub Pages. It requires no application server or content database.
 
-[Visit huzaifasheikh.dev](https://huzaifasheikh.dev)
+## Featured Projects
 
-## About the Portfolio
+- **[GrowHabits](https://tarbiyah-planner.vercel.app/)** — A family routine planner that helps children build habits through shared routines, visible progress, and parent-defined rewards.
+- **[Ocula](https://ocula-frontend.vercel.app/)** — A browser vision application for facial attribute analysis and selective identity blurring.
+- **[NutriWise](https://diet-planner-ten-wheat.vercel.app/)** — A diet-planning platform that calculates nutritional targets and recommends similar meals.
+- **[GazeCal](https://gazecal.vercel.app/)** — A browser-based webcam gaze calibration and tracking experiment.
 
-This website is the professional home of Huzaifa Sheikh, a fresh Computer Engineering graduate and full-stack JavaScript developer. It brings together the applications I have built, my practical experience, technical background, and writing. Visitors can also view or download my resume and contact me directly.
+Each project card links to the deployed application and its source repository, with a concise overview of the problem, implementation, and technology stack.
 
-## Highlights
+## What the Site Includes
 
-- Selected full-stack development projects
-- Practical work shaped by real user requirements
-- A dedicated space for technical blogs and learning notes
-- Resume, skills, education, and professional experience
-- Responsive interface with light and dark themes
-- Direct email and professional profile links
+- Responsive home, about, projects, resume, blog, contact, archive, and site-statistics pages
+- Filterable project collection with live-site and source-code links
+- Markdown-authored blog posts with local media, share controls, and reading progress
+- Printable and downloadable resume
+- Light and dark themes with persistent user preference
+- Responsive navigation and reduced-motion support
+- Route-specific metadata, canonical URLs, social share cards, structured data, and a generated sitemap
+- Automated static-export verification before deployment
 
-## Screenshots
+## Blog Publishing
 
-Screenshots can be added to `docs/screenshots/` using the filenames below.
+The blog intentionally uses a Git-based static workflow rather than a CMS or database:
 
-### Home page
+1. Articles are written as Markdown files in `content/blog/`.
+2. Frontmatter stores the title, publication date, description, and image metadata.
+3. Blog media is stored under `public/media/images/blogs/`.
+4. Next.js generates every published post as static HTML during the production build.
+5. Pushing an update to `main` triggers the GitHub Actions deployment workflow.
 
-![Home page screenshot](docs/screenshots/home.png)
+This keeps the content version-controlled, portable, and available without a runtime API.
 
-### Projects section
+## Technology
 
-![Projects section screenshot](docs/screenshots/projects.png)
+- **Framework:** Next.js 16 App Router, React 19, TypeScript
+- **Styling:** Tailwind CSS 4, modular CSS, CSS custom properties
+- **Content:** Markdown, `gray-matter`, `markdown-to-jsx`
+- **Quality:** Biome, Prettier, TypeScript strict checking, custom export verification
+- **Hosting:** GitHub Actions and GitHub Pages
+- **Typography:** Self-hosted variable fonts
 
-### Blog section
+## Architecture
 
-![Blog section screenshot](docs/screenshots/blog.png)
+```text
+app/                  Routes, layouts, metadata, and global styles
+app/styles/           Design tokens and component, layout, and page styles
+content/blog/         Local Markdown blog posts
+public/media/         Project images, blog media, portraits, icons, and video
+src/components/       Reusable components grouped by feature
+src/data/             Projects, profile, contact, and resume content
+src/hooks/            Shared React hooks
+src/lib/              Content, metadata, schema, and utility helpers
+scripts/              Generation and static-export verification scripts
+.github/workflows/    Build and GitHub Pages deployment workflow
+```
 
-### Contact page
-
-![Contact page screenshot](docs/screenshots/contact.png)
-
-## Website Sections
-
-- **Home** — A brief introduction and links to featured areas of the site.
-- **About** — More about my background, interests, and approach to development.
-- **Experience** — Practical work and project experience, presented within the resume.
-- **Projects** — Selected applications with descriptions, technology stacks, source code, and live demos.
-- **Blogs/Writings** — A space for practical notes on development, projects, and lessons learned.
-- **Resume** — My experience, education, skills, courses, and downloadable resume.
-- **Contact** — Direct email access and links to my professional profiles.
-
-## Tech Stack
-
-### Frontend
-
-- Next.js 16
-- React 19
-- TypeScript
-
-### Styling
-
-- Tailwind CSS 4
-- Modular CSS and CSS custom properties
-- Self-hosted variable fonts
-
-### Content and integrations
-
-- Markdown-based content support
-- Optional Google Analytics integration
-
-### Deployment
-
-- Next.js static export
-- GitHub Actions
-- GitHub Pages
-
-### Development tools
-
-- npm
-- Biome and Prettier
-
-## Technical Highlights
-
-- Reusable React components organized by site feature
-- Strict TypeScript configuration
-- Responsive layouts and print-specific resume styles
-- Light and dark themes with saved user preference
-- Accessible navigation, keyboard states, and reduced-motion handling
-- Route-specific metadata, canonical URLs, Open Graph, and Twitter card data
-- Structured data and sitemap generation
-- Static export suitable for GitHub Pages hosting
-- Automated production builds and export verification in CI
-- Email-based contact without a server-side form or database
+Content is separated from presentation so most portfolio updates—such as adding a project, changing resume information, or publishing a post—do not require rewriting page components.
 
 ## Running Locally
 
-### 1. Clone the repository
+### Requirements
+
+- Node.js 26, matching `.nvmrc`
+- npm
+
+### Setup
 
 ```bash
 git clone https://github.com/Huzefa077/huzaifa-portfolio.git
 cd huzaifa-portfolio
 ```
 
-### 2. Use the supported Node.js version
-
-The project pins its development version in `.nvmrc`.
-
 ```bash
 nvm use
-```
-
-### 3. Install dependencies
-
-```bash
 npm ci
-```
-
-### 4. Configure optional analytics
-
-No environment variables are required to run the website locally. To enable Google Analytics, copy `.env.example` to `.env.local` and set a valid `NEXT_PUBLIC_GA_TRACKING_ID`.
-
-### 5. Start the development server
-
-```bash
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Project Structure
+No environment variables are required for local development. Google Analytics is optional and can be enabled by copying `.env.example` to `.env.local` and setting `NEXT_PUBLIC_GA_TRACKING_ID`.
 
-```text
-app/                 Next.js routes, layouts, metadata, and global styles
-content/             Local blog content
-public/              Images, icons, resume, and other static files
-src/
-├── components/      Reusable interface components grouped by feature
-├── data/            Projects, profile, contact, and resume content
-├── hooks/           Shared React hooks
-└── lib/             Metadata, content, schema, and utility helpers
-docs/                Contributor and customization documentation
-scripts/             Build-time generation and export verification tools
-.github/workflows/   Continuous integration and deployment
-next.config.mjs      Next.js static-export configuration
+## Quality Checks
+
+```bash
+npm run format
+npm run lint
+npm run type-check
+npm run build
+npm run verify-export
 ```
+
+`npm run dev` and `npm run build` intentionally use webpack because Turbopack has produced repeatable failures in this project.
+
+The production gate is:
+
+```bash
+npm run build && npm run verify-export
+```
+
+The verifier checks generated pages for draft leakage, metadata completeness, canonical URLs, heading fragments, local images, internal links, and sitemap consistency.
 
 ## Deployment
 
-The portfolio is exported as a static website and deployed to GitHub Pages through GitHub Actions after the checks on `main` pass.
+The repository uses one long-lived branch: `main`. A push to `main` runs the GitHub Actions workflow, builds the static export, verifies it, and publishes it to GitHub Pages.
 
-Production: [https://huzaifasheikh.dev](https://huzaifasheikh.dev)
-
-## Status
-
-This portfolio is actively maintained and will evolve as I add projects, publish writing, and gain professional experience.
+Production: **[huzaifasheikh.dev](https://huzaifasheikh.dev)**
 
 ## Author
 
-**Huzaifa Sheikh**
+**Huzaifa Sheikh** — JavaScript Full-Stack Developer
 
 - [Portfolio](https://huzaifasheikh.dev)
 - [GitHub](https://github.com/Huzefa077)
 - [LinkedIn](https://www.linkedin.com/in/huzaifasheikh077/)
-
-This project is adapted from [mldangelo/personal-site](https://github.com/mldangelo/personal-site) and retains the original MIT license.
