@@ -50,7 +50,7 @@ const data: Project[] = [
     tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'face-api.js'],
   },
   {
-    title: 'NutriWise',
+    title: 'MunchPlan',
     subtitle: 'Personalized diet and meal planning',
     liveUrl: 'https://diet-planner-ten-wheat.vercel.app/',
     githubUrl: 'https://github.com/Huzefa077/diet_planner',
