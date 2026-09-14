@@ -22,7 +22,7 @@ export interface Project {
 const data: Project[] = [
   {
     title: 'GrowHabits',
-    subtitle: 'Help your child build good habits',
+    subtitle: 'Child Routine & Habit Planning App',
     liveUrl: 'https://tarbiyah-planner.vercel.app/',
     githubUrl: 'https://github.com/Huzefa077/tarbiyah-planner',
     image: '/media/images/projects/tarbiyah-planner.webp',
