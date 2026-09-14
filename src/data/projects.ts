@@ -23,8 +23,8 @@ const data: Project[] = [
   {
     title: 'GrowHabits',
     subtitle: 'Child Routine & Habit Planning App',
-    liveUrl: 'https://tarbiyah-planner.vercel.app/',
-    githubUrl: 'https://github.com/Huzefa077/tarbiyah-planner',
+    liveUrl: 'https://grow-habits.vercel.app/',
+    githubUrl: 'https://github.com/Huzefa077/GrowHabits',
     image: '/media/images/projects/tarbiyah-planner.webp',
     imageAlt: 'Child using a printed GrowHabits activity chart',
     desc: 'Help children build good habits through shared routines, visible progress, and meaningful rewards agreed on with their parents.',
@@ -52,8 +52,8 @@ const data: Project[] = [
   {
     title: 'MunchPlan',
     subtitle: 'Personalized diet and meal planning',
-    liveUrl: 'https://diet-planner-ten-wheat.vercel.app/',
-    githubUrl: 'https://github.com/Huzefa077/diet_planner',
+    liveUrl: 'https://munch-plan.vercel.app/',
+    githubUrl: 'https://github.com/Huzefa077/MunchPlan',
     image: '/media/images/projects/nutriwise-image.webp',
     imageAlt: 'Website homepage photo',
     desc: 'A secure diet-planning platform that calculates calorie and macronutrient targets and recommends nutritionally similar meals using cosine similarity.',
